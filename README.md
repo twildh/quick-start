@@ -4,10 +4,8 @@
 
 QuickStart is a beautiful and clean new tab page for Chrome and Firefox. It is meant to give you quick access to your bookmarks and displays their icons in a grid.
 
-_TODO: Add links once published_
-
-- [Chrome extension]()
-- [Firefox add-on]()
+- **Chrome extension** (in review)
+- **[Firefox add-on](https://addons.mozilla.org/en-US/firefox/addon/quickstart)**
 
 ## Demo
 
