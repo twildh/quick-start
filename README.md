@@ -1,6 +1,6 @@
 # <img src="./.github/icon-with-text.svg" height="50" alt="QuickStart" />
 
-**Simple browser start page**
+**Bookmark-based browser start page**
 
 QuickStart is a beautiful and clean new tab page for Chrome and Firefox. It is meant to give you quick access to your bookmarks and displays their icons in a grid.
 
