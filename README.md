@@ -9,9 +9,9 @@ _TODO: Add links once published_
 - [Chrome extension]()
 - [Firefox add-on]()
 
-## Screenshot
+## Demo
 
-_TODO: Add screenshot once UI is finished_
+![Demo](./.github/demo.gif)
 
 ## Contributing
 
