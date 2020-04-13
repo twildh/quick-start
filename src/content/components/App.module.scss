@@ -1,0 +1,8 @@
+// Root container: Distribute children vertically (used to place footer at the bottom of the page
+// and let the `FolderView` fill up the rest)
+.app {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	padding: var(--spacing-large);
+}

@@ -1,0 +1,117 @@
+{
+	"private": true,
+	"scripts": {
+		"start": "npm-run-all start:ts --parallel 'start:ts --watch' start:ext",
+		"start:ts": "webpack --mode development",
+		"start:ext": "run-p start:ext:*",
+		"start:ext:chrome": "web-ext run --source-dir ./dist --target chromium",
+		"start:ext:firefox": "web-ext run --source-dir ./dist",
+		"build": "run-s build:*",
+		"build:ts": "webpack --mode production",
+		"build:ext": "cd ./dist && zip -r ../extension.zip . -x '*.DS_Store'",
+		"test": "run-s test:*",
+		"test:jest": "jest",
+		"test:types": "tsc --noEmit",
+		"lint": "run-p lint:*",
+		"lint:css": "stylelint --ignore-path ./.gitignore --max-warnings 0 '**/*.{css,sass,scss}'",
+		"lint:css:fix": "yarn lint:css --fix",
+		"lint:ts": "eslint --ext .ts,.tsx --ignore-path ./.gitignore --max-warnings 0 '**/*.{ts,tsx}'",
+		"lint:ts:fix": "yarn lint:ts --fix",
+		"lint:ext": "web-ext lint --source-dir ./dist",
+		"format": "prettier --ignore-path ./.gitignore --list-different '**/*.{css,html,js,json,jsx,less,md,scss,ts,tsx,vue,yaml,yml}'",
+		"format:fix": "yarn format --write"
+	},
+	"dependencies": {
+		"@types/react": "^16.9.34",
+		"@types/react-dom": "^16.9.6",
+		"@types/react-redux": "^7.1.7",
+		"@types/redux-logger": "^3.0.7",
+		"minireset.css": "^0.0.6",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
+		"react-redux": "^7.2.0",
+		"redux": "^4.0.5",
+		"redux-logger": "^3.0.6",
+		"redux-thunk": "^2.3.0",
+		"webext-options-sync": "^1.2.3",
+		"webextension-polyfill-ts": "^0.14.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.9.0",
+		"@babel/preset-env": "^7.9.5",
+		"@babel/preset-react": "^7.9.4",
+		"@babel/preset-typescript": "^7.9.0",
+		"@samuelmeuli/eslint-config": "^6.0.0",
+		"@samuelmeuli/prettier-config": "^2.0.1",
+		"@samuelmeuli/stylelint-config": "^3.0.0",
+		"@samuelmeuli/tsconfig": "^1.0.0",
+		"@svgr/webpack": "^5.3.1",
+		"@types/copy-webpack-plugin": "^5.0.0",
+		"@types/html-webpack-plugin": "^3.2.2",
+		"@types/jest": "^25.2.1",
+		"@types/webpack": "^4.41.10",
+		"@typescript-eslint/eslint-plugin": "^2.27.0",
+		"@typescript-eslint/parser": "^2.27.0",
+		"babel-loader": "^8.1.0",
+		"clean-webpack-plugin": "^3.0.0",
+		"copy-webpack-plugin": "^5.1.1",
+		"css-loader": "^3.5.2",
+		"eslint": "6.8.0",
+		"eslint-config-airbnb": "18.1.0",
+		"eslint-config-prettier": "^6.10.1",
+		"eslint-plugin-import": "~2.20.2",
+		"eslint-plugin-jsx-a11y": "^6.1.1",
+		"eslint-plugin-react": "^7.19.0",
+		"eslint-plugin-react-hooks": "^2.5.1",
+		"html-webpack-plugin": "^4.2.0",
+		"jest": "^25.3.0",
+		"npm-run-all": "^4.1.5",
+		"prettier": "^2.0.4",
+		"sass": "^1.26.3",
+		"sass-loader": "^8.0.2",
+		"style-loader": "^1.1.3",
+		"stylelint": "^12.0.1",
+		"ts-node": "^8.8.2",
+		"typescript": "^3.8.3",
+		"web-ext": "^4.1.0",
+		"webpack": "^4.42.1",
+		"webpack-cli": "^3.3.11"
+	},
+	"browserslist": [
+		"last 3 Chrome versions",
+		"last 3 Firefox versions"
+	],
+	"babel": {
+		"presets": [
+			"@babel/preset-env",
+			"@babel/preset-react",
+			"@babel/preset-typescript"
+		]
+	},
+	"eslintConfig": {
+		"root": true,
+		"extends": "@samuelmeuli/eslint-config/typescript-react",
+		"env": {
+			"browser": true,
+			"webextensions": true,
+			"jest": true
+		},
+		"rules": {
+			"import/no-extraneous-dependencies": [
+				"error",
+				{
+					"devDependencies": [
+						"./webpack.config.ts"
+					]
+				}
+			]
+		}
+	},
+	"stylelint": {
+		"extends": "@samuelmeuli/stylelint-config",
+		"rules": {
+			"selector-class-pattern": null
+		}
+	},
+	"prettier": "@samuelmeuli/prettier-config"
+}

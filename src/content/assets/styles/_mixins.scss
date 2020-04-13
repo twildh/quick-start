@@ -1,0 +1,15 @@
+// Breakpoint between small and large screens
+// Has to be a Sass variable because CSS variables cannot be used in media tags
+$break-point: 600px;
+
+@mixin small-screens {
+	@media screen and (max-width: $break-point) {
+		@content;
+	}
+}
+
+@mixin large-screens {
+	@media screen and (min-width: $break-point) {
+		@content;
+	}
+}
