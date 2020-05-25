@@ -5,7 +5,7 @@
 	"description": "Bookmark-based browser start page",
 	"author": "Timothée Wildhaber and Samuel Meuli",
 	"homepage_url": "https://github.com/samuelmeuli/quick-start",
-	"permissions": ["https://quick-start.samuelmeuli.com/*", "bookmarks", "storage"],
+	"permissions": ["bookmarks", "storage"],
 	"icons": {
 		"48": "./icons/icon-48.png",
 		"128": "./icons/icon-128.png",
