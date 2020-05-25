@@ -11415,6 +11415,11 @@ web-ext@^4.1.0:
     yargs "15.1.0"
     zip-dir "1.0.2"
 
+webext-base-css@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/webext-base-css/-/webext-base-css-1.1.0.tgz#bc641d7246c593ec5832879305cb7b196e4a9f22"
+  integrity sha512-idimmVKsaf9ACwbSDnVjE0kFngu0e36yqbmUWEj4sqFd+g1DLkuvYKQcB7e/i73JFE9EOv8apICE7jqC7oWmHA==
+
 webext-detect-page@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/webext-detect-page/-/webext-detect-page-2.0.4.tgz#ecdb421ffced49de2d86a29f8cea61963e62caea"

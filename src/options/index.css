@@ -1,0 +1,9 @@
+/* Some spacing above the form is necessary in Firefox */
+form {
+	margin-top: 20px;
+}
+
+/* Spacing between label and input */
+input {
+	margin-left: 5px !important; /* stylelint-disable-line declaration-no-important */
+}

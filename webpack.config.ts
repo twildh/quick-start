@@ -77,9 +77,16 @@ export default (
 			title: EXT_NAME,
 		}),
 		new CopyPlugin([
+			// Extension manifest
 			"./manifest.json",
+
+			// Extension icons
 			{ from: "./icons/", to: "./icons/" },
-			{ from: "./src/options/index.html", to: "./options.html" }, // Options HTML page
+
+			// Options page
+			{ from: "./src/options/index.html", to: "./options.html" },
+			{ from: "./src/options/index.css", to: "./options.css" },
+			{ from: "./node_modules/webext-base-css/webext-base.css", to: "./webext-base.css" },
 		]) as Plugin,
 	],
 });
