@@ -26,3 +26,4 @@ Suggestions and contributions are always welcome! Please discuss larger changes 
 - UI inspiration: Safari by Apple
 - Extension icon: [UI Interface pack](https://www.flaticon.com/packs/ui-interface-24) by Freepik
 - In-app icons: [Ionicons v4](https://ionicons.com/v4) by Ionic
+- Favicon service: [besticon](https://github.com/mat/besticon)
