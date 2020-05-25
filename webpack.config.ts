@@ -3,7 +3,7 @@ import path from "path";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import CopyPlugin from "copy-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
-import { CliConfigOptions, Configuration, Plugin } from "webpack";
+import { CliConfigOptions, Configuration } from "webpack";
 
 const CSS_MODULE_REGEX = /\.module\.s?css$/;
 const EXT_NAME = "QuickStart";
@@ -70,12 +70,15 @@ export default (
 		],
 	},
 	plugins: [
-		new CleanWebpackPlugin() as Plugin,
+		// @ts-ignore
+		new CleanWebpackPlugin(),
+		// @ts-ignore
 		new HtmlWebpackPlugin({
 			chunks: ["content"], // Only load content script in main HTML
 			meta: { viewport: "width=device-width, initial-scale=1, shrink-to-fit=no" },
 			title: EXT_NAME,
 		}),
+		// @ts-ignore
 		new CopyPlugin([
 			// Extension manifest
 			"./manifest.json",
@@ -87,6 +90,6 @@ export default (
 			{ from: "./src/options/index.html", to: "./options.html" },
 			{ from: "./src/options/index.css", to: "./options.css" },
 			{ from: "./node_modules/webext-base-css/webext-base.css", to: "./webext-base.css" },
-		]) as Plugin,
+		]),
 	],
 });
