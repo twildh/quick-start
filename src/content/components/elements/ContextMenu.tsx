@@ -24,8 +24,8 @@ const ContextMenu = (props: Props): ReactElement => {
 	const grandParentId = parentId ? bookmarks[parentId].parentId : undefined;
 	const greatGrandParentId = grandParentId ? bookmarks[grandParentId].parentId : undefined;
 
-	// Node can be moved up if it wouldn't move it into the root directory
-	const canMoveUp = greatGrandParentId != null;
+	// Folders cannot be copied (don't have a URL)
+	const canCopy = selectedNode?.type === "bookmark";
 
 	// Node can be deleted if it's not in the root directory
 	const canDelete = grandParentId != null;
@@ -33,13 +33,14 @@ const ContextMenu = (props: Props): ReactElement => {
 	// Node can be edited if it's not in the root directory
 	const canEdit = grandParentId != null;
 
-	const onMoveUpClick = (): void => {
-		if (!selectedNode) {
-			console.error("Cannot move node into parent directory: No node provided");
-		} else if (grandParentId) {
-			dispatch(moveNodeToFolder(selectedNode.id, grandParentId));
+	// Node can be moved up if it wouldn't move it into the root directory
+	const canMoveUp = greatGrandParentId != null;
+
+	const onCopyClick = async (): Promise<void> => {
+		if (selectedNode?.url) {
+			await navigator.clipboard.writeText(selectedNode.url);
 		} else {
-			console.error("Cannot move node into parent directory: Parent directory not exist");
+			console.error("Cannot copy to clipboard: Missing URL");
 		}
 	};
 
@@ -67,6 +68,16 @@ const ContextMenu = (props: Props): ReactElement => {
 		}
 	};
 
+	const onMoveUpClick = (): void => {
+		if (!selectedNode) {
+			console.error("Cannot move node into parent directory: No node provided");
+		} else if (grandParentId) {
+			dispatch(moveNodeToFolder(selectedNode.id, grandParentId));
+		} else {
+			console.error("Cannot move node into parent directory: Parent directory not exist");
+		}
+	};
+
 	return (
 		<div
 			className={styles.contextMenu}
@@ -78,7 +89,10 @@ const ContextMenu = (props: Props): ReactElement => {
 		>
 			<ul>
 				<li>
-					<ContextMenuItem disabled={!canEdit} label="Edit" onClick={onEditClick} />
+					<ContextMenuItem disabled={!canCopy} label="Copy" onClick={onCopyClick} />
+				</li>
+				<li>
+					<ContextMenuItem disabled={!canEdit} label="Edit…" onClick={onEditClick} />
 				</li>
 				<li>
 					<ContextMenuItem disabled={!canMoveUp} label="Move up" onClick={onMoveUpClick} />
