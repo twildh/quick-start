@@ -14,7 +14,7 @@ const Modal = (props: Props): ReactElement => {
 	const { children, onClose } = props;
 
 	// Close modal when "ESC" key is pressed
-	const onKeyPress = (event: KeyboardEvent): void => {
+	const onKeyDown = (event: KeyboardEvent): void => {
 		if (event.key === "Escape") {
 			onClose();
 		}
@@ -26,19 +26,13 @@ const Modal = (props: Props): ReactElement => {
 	//   closes the dialog
 	// - The inner wrapper contains the actual dialog UI
 	return (
-		<div
-			role="button"
-			tabIndex={0}
-			className={styles.modalOuterWrapper}
-			onClick={onOuterWrapperClick}
-			onKeyPress={onKeyPress}
-		>
+		<div role="presentation" className={styles.modalOuterWrapper} onClick={onOuterWrapperClick}>
+			{/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
 			<div
-				role="button"
-				tabIndex={0}
+				role="dialog"
 				className={styles.modalInnerWrapper}
 				onClick={onInnerWrapperClick}
-				onKeyPress={onKeyPress}
+				onKeyDown={onKeyDown}
 			>
 				{children}
 			</div>
