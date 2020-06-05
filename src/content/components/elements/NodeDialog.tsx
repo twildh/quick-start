@@ -112,6 +112,7 @@ const NodeDialog = (props: Props): ReactElement => {
 							name="title-input"
 							value={nodeTitle}
 							placeholder="Title"
+							autoFocus // eslint-disable-line jsx-a11y/no-autofocus
 							onChange={onTitleChange}
 						/>
 					</label>
