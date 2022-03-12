@@ -1,14 +1,14 @@
 .contextMenuItem {
-	width: 100%;
-	padding: 10px 20px;
-	text-align: left;
-	background: var(--color-background-context-menu);
+  width: 100%;
+  padding: 10px 20px;
+  text-align: left;
+  background: var(--color-background-context-menu);
 
-	&:disabled {
-		color: #8c8c8c;
-	}
+  &:disabled {
+    color: #8c8c8c;
+  }
 
-	&:not(:disabled):hover {
-		background: var(--color-background-context-menu-hover);
-	}
+  &:not(:disabled):hover {
+    background: var(--color-background-context-menu-hover);
+  }
 }

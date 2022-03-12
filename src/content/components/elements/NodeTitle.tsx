@@ -1,16 +1,16 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement } from "react"
 
-import { TreeNode } from "../../../shared/types";
-import styles from "./NodeTitle.module.scss";
+import { TreeNode } from "../../../shared/types"
+import styles from "./NodeTitle.module.scss"
 
 interface Props {
-	node: TreeNode;
+  node: TreeNode
 }
 
 const NodeTitle = (props: Props): ReactElement => {
-	const { node } = props;
+  const { node } = props
 
-	return <p className={styles.nodeTitle}>{node.title}</p>;
-};
+  return <p className={styles.nodeTitle}>{node.title}</p>
+}
 
-export default NodeTitle;
+export default NodeTitle
