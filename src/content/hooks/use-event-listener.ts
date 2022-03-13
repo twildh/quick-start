@@ -5,10 +5,10 @@ import { useEffect, useRef } from "react"
  */
 const useEventListener = (
   eventName: string,
-  handler: (event: any) => void,
+  handler: (event: unknown) => void,
   element = window,
 ): void => {
-  const savedHandler = useRef<(event: any) => void>()
+  const savedHandler = useRef<(event: unknown) => void>()
 
   useEffect((): void | (() => void | undefined) => {
     savedHandler.current = handler
@@ -22,7 +22,7 @@ const useEventListener = (
     }
 
     // Create event listener that calls handler function stored in `ref`
-    const eventListener = (event: any): void => {
+    const eventListener = (event: unknown): void => {
       if (savedHandler.current) {
         savedHandler.current(event)
       }

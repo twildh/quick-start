@@ -4,17 +4,21 @@
     "ecmaVersion": 2020,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "react-hooks", "prettier"],
+  "plugins": [
+    "jsx-a11y",
+    "@typescript-eslint",
+    "react-hooks"
+  ],
   "extends": [
     "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "prettier"
   ],
   "rules": {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "react/prop-types": "off",
-    "prettier/prettier": "error"
+    "react/prop-types": "off"
   },
   "settings": {
     "react": {

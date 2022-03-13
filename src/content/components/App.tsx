@@ -34,6 +34,8 @@ const App = (): ReactElement => {
   // After loading component: Update bookmark tree in state using browser API
   useEffect(() => {
     dispatch(refreshBookmarks())
+    // on mount hook, does not need to re-run
+    // eslint-disable-next-line
   }, [])
 
   // After loading component: Load setting whether clock should be displayed
@@ -46,6 +48,8 @@ const App = (): ReactElement => {
     if (defaultFolderId) {
       dispatch(setCurrentFolderId(defaultFolderId))
     }
+    // only navigate on folder change
+    // eslint-disable-next-line
   }, [defaultFolderId])
 
   let appContent

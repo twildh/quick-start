@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 import { FlatTree } from "../../src/shared/types"
 
 const firefoxFlatTree: FlatTree = {
