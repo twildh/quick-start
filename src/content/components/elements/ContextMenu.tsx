@@ -1,6 +1,7 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import Browser from "webextension-polyfill";
 
 import {
   deleteBookmark,
@@ -35,8 +36,8 @@ const ContextMenu = (props: Props): ReactElement => {
   // Folders cannot be copied (don't have a URL)
   const canCopy = selectedNode?.type === "bookmark";
 
-  // Folder can not be opend in a new tab
-  const canOpenInNewTab = selectedNode?.type === "bookmark";
+  // Folder can not be opend in a new tab / incognito window
+  const canOpenInNew = selectedNode?.type === "bookmark";
 
   // Node can be deleted if it's not in the root directory
   const canDelete = grandParentId != null;
@@ -57,6 +58,14 @@ const ContextMenu = (props: Props): ReactElement => {
 
   const onOpenInNewTab = () => {
     window.open(selectedNode?.url, "_blank");
+  };
+
+  const onOpenInIncognito = async () => {
+    try {
+      await Browser.windows.create({ url: selectedNode?.url, incognito: true });
+    } catch {
+      alert(t("errors.incognitoDisabled"));
+    }
   };
 
   const onDeleteClick = (): void => {
@@ -115,9 +124,16 @@ const ContextMenu = (props: Props): ReactElement => {
         </li>
         <li>
           <ContextMenuItem
-            disabled={!canOpenInNewTab}
+            disabled={!canOpenInNew}
             label={t("actions.openInNewTab")}
             onClick={onOpenInNewTab}
+          />
+        </li>
+        <li>
+          <ContextMenuItem
+            disabled={!canOpenInNew}
+            label={t("actions.openInIncognito")}
+            onClick={onOpenInIncognito}
           />
         </li>
         <li>

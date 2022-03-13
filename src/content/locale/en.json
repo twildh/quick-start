@@ -2,6 +2,7 @@
   "actions": {
     "copy": "Copy",
     "openInNewTab": "New tab",
+    "openInIncognito": "New private",
     "editItem": "Edit...",
     "moveUp": "Move up",
     "delete": "Delete",
@@ -14,5 +15,8 @@
     "save": "Save"
   },
   "types": { "folder": "Folder", "bookmark": "Bookmark" },
-  "fields": { "title": "Title", "url": "URL" }
+  "fields": { "title": "Title", "url": "URL" },
+  "errors": {
+    "incognitoDisabled": "Enable incognito mode for this extension if you want to open a tab in private mode."
+  }
 }
