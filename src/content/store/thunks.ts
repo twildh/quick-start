@@ -1,4 +1,4 @@
-import { browser } from "webextension-polyfill-ts"
+import Browser from "webextension-polyfill"
 
 import { getBrowser } from "../../shared/browser"
 import { flattenTree } from "../utils/flat-tree"
@@ -8,7 +8,7 @@ import { ThunkActionT } from "./types"
 export const refreshBookmarks =
   (): ThunkActionT =>
   async (dispatch): Promise<void> => {
-    const tree = await browser.bookmarks.getTree()
+    const tree = await Browser.bookmarks.getTree()
     const flatTree = flattenTree(tree)
     dispatch(setBookmarks(flatTree))
   }
@@ -21,28 +21,28 @@ export const createBookmark =
     index?: number,
   ): ThunkActionT =>
   async (dispatch): Promise<void> => {
-    await browser.bookmarks.create({ parentId, title, url, index })
+    await Browser.bookmarks.create({ parentId, title, url, index })
     dispatch(refreshBookmarks())
   }
 
 export const createFolder =
   (parentId: string, title: string, index?: number): ThunkActionT =>
   async (dispatch): Promise<void> => {
-    await browser.bookmarks.create({ parentId, title, index })
+    await Browser.bookmarks.create({ parentId, title, index })
     dispatch(refreshBookmarks())
   }
 
 export const deleteBookmark =
   (id: string): ThunkActionT =>
   async (dispatch): Promise<void> => {
-    await browser.bookmarks.remove(id)
+    await Browser.bookmarks.remove(id)
     dispatch(refreshBookmarks())
   }
 
 export const deleteFolder =
   (id: string): ThunkActionT =>
   async (dispatch): Promise<void> => {
-    await browser.bookmarks.removeTree(id)
+    await Browser.bookmarks.removeTree(id)
     dispatch(refreshBookmarks())
   }
 
@@ -54,7 +54,7 @@ export const updateBookmark =
         "Error updating bookmark: One of `title` and `url` parameters must be provided",
       )
     }
-    await browser.bookmarks.update(id, { title, url })
+    await Browser.bookmarks.update(id, { title, url })
     dispatch(refreshBookmarks())
   }
 
@@ -64,7 +64,7 @@ export const updateFolder = (id: string, title: string): ThunkActionT =>
 export const moveNodeToFolder =
   (id: string, parentId: string): ThunkActionT =>
   async (dispatch): Promise<void> => {
-    await browser.bookmarks.move(id, { parentId })
+    await Browser.bookmarks.move(id, { parentId })
     dispatch(refreshBookmarks())
   }
 
@@ -79,6 +79,6 @@ export const moveNodeInFolder =
       // TODO: Remove once https://bugs.chromium.org/p/chromium/issues/detail?id=1053959 is fixed
       newIndex += 1
     }
-    await browser.bookmarks.move(id, { index: newIndex })
+    await Browser.bookmarks.move(id, { index: newIndex })
     dispatch(refreshBookmarks())
   }

@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react"
-import { browser } from "webextension-polyfill-ts"
+import Browser from "webextension-polyfill"
 
 import { TreeNode } from "../../../shared/types"
 import AddBookmarkIcon from "../../assets/icons/new-bookmark.svg"
@@ -49,7 +49,7 @@ const Footer = (props: Props): ReactElement => {
   }
 
   const openSettings = async (): Promise<void> => {
-    await browser.runtime.openOptionsPage()
+    await Browser.runtime.openOptionsPage()
   }
 
   return (

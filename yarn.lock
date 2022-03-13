@@ -8628,6 +8628,11 @@ web-ext@^6.7.0:
     yargs "16.2.0"
     zip-dir "2.0.0"
 
+webext-base-css@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/webext-base-css/-/webext-base-css-1.4.0.tgz#bdf07f0307dd859886c2a97696b2149855eded20"
+  integrity sha512-ftOKQmn/okQEo0YrPf/n97Q/fGxSkL+HADW6y1GqlmgRtBSIz67mTgqNIWvh2tV8Ee183xvrrbzCTqnYcJ3Fhg==
+
 webext-detect-page@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/webext-detect-page/-/webext-detect-page-4.0.1.tgz#124a6802c872fa0bc12549d99b2dd53d18af2ba7"
@@ -8639,6 +8644,11 @@ webext-options-sync@^3.0.1:
   integrity sha512-9oojOaIqyIgjGw8abs0oKhmfXSLBrhBAjoLyhIXGSMZrUM/reoljSy1AR/cGOzTBYFmu/lTKeKNdYzlQ+sSL9Q==
   dependencies:
     webext-detect-page "^4.0.0"
+
+webextension-polyfill@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/webextension-polyfill/-/webextension-polyfill-0.8.0.tgz#f80e9f4b7f81820c420abd6ffbebfa838c60e041"
+  integrity sha512-a19+DzlT6Kp9/UI+mF9XQopeZ+n2ussjhxHJ4/pmIGge9ijCDz7Gn93mNnjpZAk95T4Tae8iHZ6sSf869txqiQ==
 
 webidl-conversions@^5.0.0:
   version "5.0.0"

@@ -1,4 +1,4 @@
-import { Bookmarks } from "webextension-polyfill-ts"
+import { Bookmarks } from "webextension-polyfill"
 
 const firefoxTree: Bookmarks.BookmarkTreeNode[] = [
   {

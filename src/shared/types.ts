@@ -1,4 +1,4 @@
-import { Bookmarks } from "webextension-polyfill-ts"
+import { Bookmarks } from "webextension-polyfill"
 
 // Flattened bookmark tree (allows faster access and navigation)
 
