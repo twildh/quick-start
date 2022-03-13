@@ -9,7 +9,7 @@ const CSS_MODULE_REGEX = /\.module\.s?css$/;
 const EXT_NAME = "QuickStart";
 
 export default (
-  _: string | Record<string, boolean | number | string>,
+  env: { target: "firefox" | "chrome" },
   args: { mode: string },
 ): Configuration => ({
   entry: {
@@ -19,7 +19,7 @@ export default (
     options: "./src/options/index.ts",
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "dist", env.target),
   },
   devtool: args.mode === "development" ? "source-map" : false,
   resolve: {
@@ -82,8 +82,9 @@ export default (
     new CopyPlugin({
       patterns: [
         // Extension manifest
-        "./manifest.json",
-
+        env.target == "firefox"
+          ? { from: "./manifestFF.json", to: "./manifest.json" }
+          : { from: "./manifestChrome.json", to: "./manifest.json" },
         // Extension icons
         { from: "./icons/", to: "./icons/" },
 
