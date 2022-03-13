@@ -1,5 +1,6 @@
 .nodeTitle {
   display: -webkit-box;
+  line-height: 1.25em;
   height: 2.5em;
   margin-top: 10px;
   overflow: hidden;
@@ -7,4 +8,6 @@
   text-align: center;
   -webkit-line-clamp: 2; // Split long titles and display ellipsis
   -webkit-box-orient: vertical;
+  pointer-events: none;
+  user-select: none;
 }

@@ -9,6 +9,7 @@ export interface State {
   bookmarks: FlatTree;
   currentFolderId: NodeId | undefined;
   draggedNodeId: NodeId | undefined;
+  folderHoverTimeout: { id: string; timer: number } | undefined;
 }
 
 // Action types
@@ -16,6 +17,7 @@ export interface State {
 export const SET_BOOKMARKS = "SET_BOOKMARKS";
 export const SET_CURRENT_FOLDER_ID = "SET_CURRENT_FOLDER_ID";
 export const SET_DRAGGED_NODE_ID = "SET_DRAGGED_NODE_ID";
+export const SET_FOLDER_HOVER_TIMER = "SET_FOLDER_HOVER_TIMER";
 
 // Actions
 
@@ -40,10 +42,18 @@ export interface SetDraggedNodeIdAction extends Action {
   };
 }
 
+export interface SetFolderHoverTimerAction extends Action {
+  type: typeof SET_FOLDER_HOVER_TIMER;
+  payload: {
+    timeout: { id: NodeId; timer: number } | undefined;
+  };
+}
+
 export type ActionT =
   | SetBookmarksAction
   | SetCurrentFolderIdAction
-  | SetDraggedNodeIdAction;
+  | SetDraggedNodeIdAction
+  | SetFolderHoverTimerAction;
 
 // Thunks
 

@@ -3,6 +3,7 @@ import {
   SET_BOOKMARKS,
   SET_CURRENT_FOLDER_ID,
   SET_DRAGGED_NODE_ID,
+  SET_FOLDER_HOVER_TIMER,
   State,
 } from "./types";
 
@@ -10,6 +11,7 @@ const initialState: State = {
   bookmarks: {},
   currentFolderId: undefined,
   draggedNodeId: undefined,
+  folderHoverTimeout: undefined,
 };
 
 function reducer(state = initialState, action: ActionT): State {
@@ -30,6 +32,12 @@ function reducer(state = initialState, action: ActionT): State {
       return {
         ...state,
         draggedNodeId: action.payload.draggedNodeId,
+      };
+    }
+    case SET_FOLDER_HOVER_TIMER: {
+      return {
+        ...state,
+        folderHoverTimeout: action.payload.timeout,
       };
     }
     default:
