@@ -45,6 +45,12 @@ const App = (): ReactElement => {
     optionsStorage.getAll().then((options) => {
       setShowClock(options.showClock);
       i18n.changeLanguage(options.lang);
+      // the options are saved as strings on firefox not on chrome
+      // so we need to parse it
+      document.body.style.setProperty(
+        "--nr-columns",
+        (parseInt(options.nrOfColumns.toString(), 10) + 1).toString(),
+      );
     });
   }, []);
 

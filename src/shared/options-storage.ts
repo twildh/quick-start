@@ -25,6 +25,7 @@ const defaults = {
   defaultFolderId: getDefaultFolderId(),
   showClock: false,
   lang: "en",
+  nrOfColumns: 5,
 };
 
 /**
