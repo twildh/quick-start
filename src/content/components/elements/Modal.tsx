@@ -1,27 +1,27 @@
-import React, { KeyboardEvent, MouseEvent, ReactElement } from "react"
+import React, { KeyboardEvent, MouseEvent, ReactElement } from "react";
 
-import styles from "./Modal.module.scss"
+import styles from "./Modal.module.scss";
 
 interface Props {
-  children: ReactElement | ReactElement[]
-  onClose: () => void
+  children: ReactElement | ReactElement[];
+  onClose: () => void;
 }
 
 /**
  * Page overlay HOC
  */
 const Modal = (props: Props): ReactElement => {
-  const { children, onClose } = props
+  const { children, onClose } = props;
 
   // Close modal when "ESC" key is pressed
   const onKeyDown = (event: KeyboardEvent): void => {
     if (event.key === "Escape") {
-      onClose()
+      onClose();
     }
-  }
-  const onOuterWrapperClick = onClose
+  };
+  const onOuterWrapperClick = onClose;
   const onInnerWrapperClick = (event: MouseEvent): void =>
-    event.stopPropagation()
+    event.stopPropagation();
 
   // - The outer wrapper fills the entire page and darkens the elements behind it. Clicking it
   //   closes the dialog
@@ -42,7 +42,7 @@ const Modal = (props: Props): ReactElement => {
         {children}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

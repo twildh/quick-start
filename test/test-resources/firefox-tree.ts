@@ -1,4 +1,4 @@
-import { Bookmarks } from "webextension-polyfill"
+import { Bookmarks } from "webextension-polyfill";
 
 const firefoxTree: Bookmarks.BookmarkTreeNode[] = [
   {
@@ -302,6 +302,6 @@ const firefoxTree: Bookmarks.BookmarkTreeNode[] = [
       },
     ],
   },
-]
+];
 
-export default firefoxTree
+export default firefoxTree;

@@ -1,9 +1,9 @@
-import { Bookmarks } from "webextension-polyfill"
+import { Bookmarks } from "webextension-polyfill";
 
-import { FlatTree } from "../../shared/types"
+import { FlatTree } from "../../shared/types";
 
 interface BookmarkTreeNodeWithIndex extends Bookmarks.BookmarkTreeNode {
-  index: number
+  index: number;
 }
 
 /**
@@ -12,7 +12,7 @@ interface BookmarkTreeNodeWithIndex extends Bookmarks.BookmarkTreeNode {
 function nodeHasIndex(
   node: Bookmarks.BookmarkTreeNode,
 ): node is BookmarkTreeNodeWithIndex {
-  return node.index != null
+  return node.index != null;
 }
 
 /**
@@ -20,18 +20,18 @@ function nodeHasIndex(
  * accessible by their IDs in constant time
  */
 export function flattenTree(tree: Bookmarks.BookmarkTreeNode[]): FlatTree {
-  const flatTree: FlatTree = {}
+  const flatTree: FlatTree = {};
 
   function flattenChildren(node: Bookmarks.BookmarkTreeNode): void {
-    const { id, parentId, children, index, title, url } = node
+    const { id, parentId, children, index, title, url } = node;
 
-    let type: Bookmarks.BookmarkTreeNodeType
+    let type: Bookmarks.BookmarkTreeNodeType;
     if (node.type) {
       // Firefox: Node contains "type" property
-      type = node.type
+      type = node.type;
     } else {
       // Chrome: Type needs to be determined based on the existence of a "children" key
-      type = children == null ? "bookmark" : "folder"
+      type = children == null ? "bookmark" : "folder";
     }
 
     flatTree[id] = {
@@ -45,20 +45,20 @@ export function flattenTree(tree: Bookmarks.BookmarkTreeNode[]): FlatTree {
       type,
       title,
       url,
-    }
+    };
 
     // Recurse over children
     if (node.children) {
       for (const child of node.children) {
-        flattenChildren(child)
+        flattenChildren(child);
       }
     }
   }
 
   if (tree.length !== 1) {
-    throw Error("Provided bookmark tree should have a single root node")
+    throw Error("Provided bookmark tree should have a single root node");
   }
 
-  flattenChildren(tree[0])
-  return flatTree
+  flattenChildren(tree[0]);
+  return flatTree;
 }

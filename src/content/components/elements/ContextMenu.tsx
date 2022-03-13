@@ -1,54 +1,54 @@
-import React, { ReactElement } from "react"
-import { useDispatch } from "react-redux"
+import React, { ReactElement } from "react";
+import { useDispatch } from "react-redux";
 
 import {
   deleteBookmark,
   deleteFolder,
   moveNodeToFolder,
-} from "../../store/thunks"
-import { useSelector } from "../../store/use-selector"
-import { ContextMenuInfo, DialogInfo } from "../../types"
-import styles from "./ContextMenu.module.scss"
-import ContextMenuItem from "./ContextMenuItem"
+} from "../../store/thunks";
+import { useSelector } from "../../store/use-selector";
+import { ContextMenuInfo, DialogInfo } from "../../types";
+import styles from "./ContextMenu.module.scss";
+import ContextMenuItem from "./ContextMenuItem";
 
 interface Props {
-  contextMenuInfo: ContextMenuInfo
-  setDialogInfo: (dialogInfo: DialogInfo) => void
+  contextMenuInfo: ContextMenuInfo;
+  setDialogInfo: (dialogInfo: DialogInfo) => void;
 }
 
 const ContextMenu = (props: Props): ReactElement => {
-  const { contextMenuInfo, setDialogInfo } = props
-  const { x, y, isOpen, selectedNode } = contextMenuInfo
+  const { contextMenuInfo, setDialogInfo } = props;
+  const { x, y, isOpen, selectedNode } = contextMenuInfo;
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const bookmarks = useSelector((state) => state.bookmarks)
+  const bookmarks = useSelector((state) => state.bookmarks);
 
-  const parentId = selectedNode?.parentId
-  const grandParentId = parentId ? bookmarks[parentId].parentId : undefined
+  const parentId = selectedNode?.parentId;
+  const grandParentId = parentId ? bookmarks[parentId].parentId : undefined;
   const greatGrandParentId = grandParentId
     ? bookmarks[grandParentId].parentId
-    : undefined
+    : undefined;
 
   // Folders cannot be copied (don't have a URL)
-  const canCopy = selectedNode?.type === "bookmark"
+  const canCopy = selectedNode?.type === "bookmark";
 
   // Node can be deleted if it's not in the root directory
-  const canDelete = grandParentId != null
+  const canDelete = grandParentId != null;
 
   // Node can be edited if it's not in the root directory
-  const canEdit = grandParentId != null
+  const canEdit = grandParentId != null;
 
   // Node can be moved up if it wouldn't move it into the root directory
-  const canMoveUp = greatGrandParentId != null
+  const canMoveUp = greatGrandParentId != null;
 
   const onCopyClick = async (): Promise<void> => {
     if (selectedNode?.url) {
-      await navigator.clipboard.writeText(selectedNode.url)
+      await navigator.clipboard.writeText(selectedNode.url);
     } else {
-      console.error("Cannot copy to clipboard: Missing URL")
+      console.error("Cannot copy to clipboard: Missing URL");
     }
-  }
+  };
 
   const onDeleteClick = (): void => {
     if (selectedNode) {
@@ -56,11 +56,11 @@ const ContextMenu = (props: Props): ReactElement => {
         selectedNode.type === "folder"
           ? deleteFolder(selectedNode.id)
           : deleteBookmark(selectedNode.id),
-      )
+      );
     } else {
-      console.error("Cannot delete node: No node provided")
+      console.error("Cannot delete node: No node provided");
     }
-  }
+  };
 
   const onEditClick = (): void => {
     if (selectedNode) {
@@ -69,23 +69,23 @@ const ContextMenu = (props: Props): ReactElement => {
           selectedNode.type === "folder" ? "edit-folder" : "edit-bookmark",
         editedNode: selectedNode,
         currentFolderId: undefined,
-      })
+      });
     } else {
-      console.error("Cannot edit node: No node provided")
+      console.error("Cannot edit node: No node provided");
     }
-  }
+  };
 
   const onMoveUpClick = (): void => {
     if (!selectedNode) {
-      console.error("Cannot move node into parent directory: No node provided")
+      console.error("Cannot move node into parent directory: No node provided");
     } else if (grandParentId) {
-      dispatch(moveNodeToFolder(selectedNode.id, grandParentId))
+      dispatch(moveNodeToFolder(selectedNode.id, grandParentId));
     } else {
       console.error(
         "Cannot move node into parent directory: Parent directory not exist",
-      )
+      );
     }
-  }
+  };
 
   return (
     <div
@@ -127,7 +127,7 @@ const ContextMenu = (props: Props): ReactElement => {
         </li>
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default ContextMenu
+export default ContextMenu;

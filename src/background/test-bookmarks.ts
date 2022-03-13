@@ -1,12 +1,12 @@
-import Browser, { Bookmarks } from "webextension-polyfill"
+import Browser, { Bookmarks } from "webextension-polyfill";
 
 interface TestBookmark {
-  title: string
-  url: string
+  title: string;
+  url: string;
 }
 
 // Sample bookmarks for testing the extension
-const randomInt = Math.floor(Math.random() * 1000000000)
+const randomInt = Math.floor(Math.random() * 1000000000);
 const testBookmarks: TestBookmark[] = [
   { title: "Facebook", url: "https://facebook.com" },
   { title: "GitHub", url: "https://github.com" },
@@ -32,7 +32,7 @@ const testBookmarks: TestBookmark[] = [
 
   // Non-existent site
   { title: "Doesn't exist", url: `https://${randomInt}.com` },
-]
+];
 
 /**
  * Returns the ID of the first bookmark folder (Chrome and Firefox have bookmark folders which are
@@ -40,14 +40,14 @@ const testBookmarks: TestBookmark[] = [
  */
 function getTestRootId(bookmarks: Bookmarks.BookmarkTreeNode[]): string {
   if (bookmarks.length === 0) {
-    throw Error("Default bookmark folders missing")
+    throw Error("Default bookmark folders missing");
   }
   if (!bookmarks[0].children || bookmarks[0].children.length === 0) {
     throw Error(
       "First default bookmark folder is invalid (possibly not a folder)",
-    )
+    );
   }
-  return bookmarks[0].children[0].id
+  return bookmarks[0].children[0].id;
 }
 
 /**
@@ -55,24 +55,24 @@ function getTestRootId(bookmarks: Bookmarks.BookmarkTreeNode[]): string {
  */
 function fillFolderWithTestBookmarks(parentId: string): void {
   testBookmarks.forEach(async ({ title, url }) => {
-    await Browser.bookmarks.create({ parentId, title, url })
-  })
+    await Browser.bookmarks.create({ parentId, title, url });
+  });
 }
 
 /**
  * Creates sample bookmarks for testing
  */
 export async function createTestBookmarks(): Promise<void> {
-  const bookmarks = await Browser.bookmarks.getTree()
-  const rootId = getTestRootId(bookmarks)
+  const bookmarks = await Browser.bookmarks.getTree();
+  const rootId = getTestRootId(bookmarks);
 
   // Create bookmarks in first default folder
-  fillFolderWithTestBookmarks(rootId)
+  fillFolderWithTestBookmarks(rootId);
 
   // Create nested folder and add more bookmarks in there
   const { id: folderId } = await Browser.bookmarks.create({
     parentId: rootId,
     title: "Some folder",
-  })
-  fillFolderWithTestBookmarks(folderId)
+  });
+  fillFolderWithTestBookmarks(folderId);
 }

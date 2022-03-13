@@ -1,4 +1,4 @@
-import { Bookmarks } from "webextension-polyfill"
+import { Bookmarks } from "webextension-polyfill";
 
 const chromeTree: Bookmarks.BookmarkTreeNode[] = [
   {
@@ -198,6 +198,6 @@ const chromeTree: Bookmarks.BookmarkTreeNode[] = [
     id: "0",
     title: "",
   },
-]
+];
 
-export default chromeTree
+export default chromeTree;

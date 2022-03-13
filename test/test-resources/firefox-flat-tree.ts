@@ -1,4 +1,4 @@
-import { FlatTree } from "../../src/shared/types"
+import { FlatTree } from "../../src/shared/types";
 
 const firefoxFlatTree: FlatTree = {
   root________: {
@@ -323,6 +323,6 @@ const firefoxFlatTree: FlatTree = {
     title: "Mobile Bookmarks",
     url: undefined,
   },
-}
+};
 
-export default firefoxFlatTree
+export default firefoxFlatTree;

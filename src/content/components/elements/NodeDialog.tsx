@@ -1,53 +1,53 @@
-import React, { ChangeEvent, FormEvent, ReactElement, useState } from "react"
-import { useDispatch } from "react-redux"
+import React, { ChangeEvent, FormEvent, ReactElement, useState } from "react";
+import { useDispatch } from "react-redux";
 
 import {
   createBookmark,
   createFolder,
   updateBookmark,
   updateFolder,
-} from "../../store/thunks"
-import { DialogInfo } from "../../types"
-import Modal from "./Modal"
-import styles from "./NodeDialog.module.scss"
+} from "../../store/thunks";
+import { DialogInfo } from "../../types";
+import Modal from "./Modal";
+import styles from "./NodeDialog.module.scss";
 
 interface Props {
-  dialogInfo: DialogInfo
-  setDialogInfo: (dialogInfo: DialogInfo) => void
+  dialogInfo: DialogInfo;
+  setDialogInfo: (dialogInfo: DialogInfo) => void;
 }
 
 const isValidBookmarkUrl = (url: string): boolean => {
   if (!url) {
-    return false
+    return false;
   }
-  const lowerCaseUrl = url.toLowerCase()
+  const lowerCaseUrl = url.toLowerCase();
   return (
     lowerCaseUrl.startsWith("http://") ||
     lowerCaseUrl.startsWith("https://") ||
     lowerCaseUrl.startsWith("javascript")
-  )
-}
+  );
+};
 
-const isValidTitle = (title: string): boolean => title !== ""
+const isValidTitle = (title: string): boolean => title !== "";
 
 /**
  * Dialog for creating and editing bookmarks/folders
  */
 const NodeDialog = (props: Props): ReactElement => {
-  const { dialogInfo, setDialogInfo } = props
-  const dispatch = useDispatch()
+  const { dialogInfo, setDialogInfo } = props;
+  const dispatch = useDispatch();
 
   const [nodeTitle, setNodeTitle] = useState<string>(
     dialogInfo.editedNode?.title ?? "",
-  )
+  );
   const [nodeUrl, setNodeUrl] = useState<string>(
     dialogInfo.editedNode?.url ?? "",
-  )
+  );
 
-  const isCreateDialog = dialogInfo.dialogType.startsWith("create")
-  const isFolderDialog = dialogInfo.dialogType.endsWith("folder")
+  const isCreateDialog = dialogInfo.dialogType.startsWith("create");
+  const isFolderDialog = dialogInfo.dialogType.endsWith("folder");
   const canSubmit =
-    isValidTitle(nodeTitle) && (isFolderDialog || isValidBookmarkUrl(nodeUrl))
+    isValidTitle(nodeTitle) && (isFolderDialog || isValidBookmarkUrl(nodeUrl));
 
   const applyEdits = (): void => {
     switch (dialogInfo.dialogType) {
@@ -55,64 +55,66 @@ const NodeDialog = (props: Props): ReactElement => {
         if (dialogInfo.currentFolderId) {
           dispatch(
             createBookmark(dialogInfo.currentFolderId, nodeTitle, nodeUrl),
-          )
+          );
         } else {
-          console.error("Could not create bookmark: Missing `currentFolderId`")
+          console.error("Could not create bookmark: Missing `currentFolderId`");
         }
-        break
+        break;
       }
       case "create-folder": {
         if (dialogInfo.currentFolderId) {
-          dispatch(createFolder(dialogInfo.currentFolderId, nodeTitle))
+          dispatch(createFolder(dialogInfo.currentFolderId, nodeTitle));
         } else {
-          console.error("Could not create folder: Missing `currentFolderId`")
+          console.error("Could not create folder: Missing `currentFolderId`");
         }
-        break
+        break;
       }
       case "edit-bookmark": {
         if (dialogInfo.editedNode?.id) {
-          dispatch(updateBookmark(dialogInfo.editedNode.id, nodeTitle, nodeUrl))
+          dispatch(
+            updateBookmark(dialogInfo.editedNode.id, nodeTitle, nodeUrl),
+          );
         } else {
-          console.error("Could not edit bookmark: Missing `id`")
+          console.error("Could not edit bookmark: Missing `id`");
         }
-        break
+        break;
       }
       case "edit-folder": {
         if (dialogInfo.editedNode?.id) {
-          dispatch(updateFolder(dialogInfo.editedNode.id, nodeTitle))
+          dispatch(updateFolder(dialogInfo.editedNode.id, nodeTitle));
         } else {
-          console.error("Could not edit folder: Missing `id`")
+          console.error("Could not edit folder: Missing `id`");
         }
-        break
+        break;
       }
       default:
         console.error(
           `Cannot submit form: \`dialogType\` "${dialogInfo.dialogType}" is not supported`,
-        )
+        );
     }
-  }
+  };
 
   const onClose = (): void => {
-    setDialogInfo({ dialogType: "none", editedNode: undefined })
-  }
+    setDialogInfo({ dialogType: "none", editedNode: undefined });
+  };
 
   const onTitleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setNodeTitle(event.target.value)
-  }
+    setNodeTitle(event.target.value);
+  };
 
   const onUrlChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setNodeUrl(event.target.value)
-  }
+    setNodeUrl(event.target.value);
+  };
 
   const onSubmit = (event: FormEvent): void => {
-    event.preventDefault()
-    applyEdits()
-    onClose()
-  }
+    event.preventDefault();
+    applyEdits();
+    onClose();
+  };
 
   const title = `${isCreateDialog ? "Create" : "Edit"} ${
     isFolderDialog ? "folder" : "bookmark"
-  }`
+  }`;
   return (
     <Modal onClose={onClose}>
       <div className={styles.nodeDialog}>
@@ -152,7 +154,7 @@ const NodeDialog = (props: Props): ReactElement => {
         </form>
       </div>
     </Modal>
-  )
-}
+  );
+};
 
-export default NodeDialog
+export default NodeDialog;

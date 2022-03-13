@@ -4,11 +4,7 @@
     "ecmaVersion": 2020,
     "sourceType": "module"
   },
-  "plugins": [
-    "jsx-a11y",
-    "@typescript-eslint",
-    "react-hooks"
-  ],
+  "plugins": ["jsx-a11y", "@typescript-eslint", "react-hooks"],
   "extends": [
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",

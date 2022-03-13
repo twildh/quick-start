@@ -1,4 +1,4 @@
-import { FlatTree, NodeId } from "../../shared/types"
+import { FlatTree, NodeId } from "../../shared/types";
 import {
   SET_BOOKMARKS,
   SET_CURRENT_FOLDER_ID,
@@ -6,7 +6,7 @@ import {
   SetBookmarksAction,
   SetCurrentFolderIdAction,
   SetDraggedNodeIdAction,
-} from "./types"
+} from "./types";
 
 export function setBookmarks(bookmarks: FlatTree): SetBookmarksAction {
   return {
@@ -14,7 +14,7 @@ export function setBookmarks(bookmarks: FlatTree): SetBookmarksAction {
     payload: {
       bookmarks,
     },
-  }
+  };
 }
 
 export function setCurrentFolderId(
@@ -25,7 +25,7 @@ export function setCurrentFolderId(
     payload: {
       currentFolderId,
     },
-  }
+  };
 }
 
 export function setDraggedNodeId(
@@ -36,5 +36,5 @@ export function setDraggedNodeId(
     payload: {
       draggedNodeId,
     },
-  }
+  };
 }

@@ -1,4 +1,4 @@
-import { FlatTree } from "../../src/shared/types"
+import { FlatTree } from "../../src/shared/types";
 
 const chromeFlatTree: FlatTree = {
   "0": {
@@ -217,6 +217,6 @@ const chromeFlatTree: FlatTree = {
     title: "Doesn't exist",
     url: "https://476055346.com/",
   },
-}
+};
 
-export default chromeFlatTree
+export default chromeFlatTree;

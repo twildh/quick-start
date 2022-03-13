@@ -8,16 +8,16 @@ export function moveInArray<T>(
   toIndex: number,
 ): T[] {
   if (fromIndex < 0 || fromIndex >= array.length) {
-    throw Error(`Invalid value \`${fromIndex}\` for \`fromIndex\` parameter`)
+    throw Error(`Invalid value \`${fromIndex}\` for \`fromIndex\` parameter`);
   }
   if (toIndex < 0 || toIndex >= array.length) {
-    throw Error(`Invalid value \`${toIndex}\` for \`toIndex\` parameter`)
+    throw Error(`Invalid value \`${toIndex}\` for \`toIndex\` parameter`);
   }
   if (fromIndex === toIndex) {
-    return array
+    return array;
   }
 
-  const result = [...array]
-  result.splice(toIndex, 0, result.splice(fromIndex, 1)[0])
-  return result
+  const result = [...array];
+  result.splice(toIndex, 0, result.splice(fromIndex, 1)[0]);
+  return result;
 }

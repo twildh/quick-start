@@ -4,13 +4,13 @@ import {
   SET_CURRENT_FOLDER_ID,
   SET_DRAGGED_NODE_ID,
   State,
-} from "./types"
+} from "./types";
 
 const initialState: State = {
   bookmarks: {},
   currentFolderId: undefined,
   draggedNodeId: undefined,
-}
+};
 
 function reducer(state = initialState, action: ActionT): State {
   switch (action.type) {
@@ -18,23 +18,23 @@ function reducer(state = initialState, action: ActionT): State {
       return {
         ...state,
         bookmarks: action.payload.bookmarks,
-      }
+      };
     }
     case SET_CURRENT_FOLDER_ID: {
       return {
         ...state,
         currentFolderId: action.payload.currentFolderId,
-      }
+      };
     }
     case SET_DRAGGED_NODE_ID: {
       return {
         ...state,
         draggedNodeId: action.payload.draggedNodeId,
-      }
+      };
     }
     default:
-      return state
+      return state;
   }
 }
 
-export default reducer
+export default reducer;

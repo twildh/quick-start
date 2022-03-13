@@ -1,12 +1,12 @@
-import path from "path"
+import path from "path";
 
-import { CleanWebpackPlugin } from "clean-webpack-plugin"
-import CopyPlugin from "copy-webpack-plugin"
-import HtmlWebpackPlugin from "html-webpack-plugin"
-import { Configuration } from "webpack"
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import CopyPlugin from "copy-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import { Configuration } from "webpack";
 
-const CSS_MODULE_REGEX = /\.module\.s?css$/
-const EXT_NAME = "QuickStart"
+const CSS_MODULE_REGEX = /\.module\.s?css$/;
+const EXT_NAME = "QuickStart";
 
 export default (
   _: string | Record<string, boolean | number | string>,
@@ -97,4 +97,4 @@ export default (
       ],
     }),
   ],
-})
+});

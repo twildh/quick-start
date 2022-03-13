@@ -1,56 +1,56 @@
-import React, { ReactElement } from "react"
-import Browser from "webextension-polyfill"
+import React, { ReactElement } from "react";
+import Browser from "webextension-polyfill";
 
-import { TreeNode } from "../../../shared/types"
-import AddBookmarkIcon from "../../assets/icons/new-bookmark.svg"
-import AddFolderIcon from "../../assets/icons/new-folder.svg"
-import SaveIcon from "../../assets/icons/save.svg"
-import SettingsIcon from "../../assets/icons/settings.svg"
-import useDefaultFolderId from "../../hooks/use-default-folder-id"
-import { useSelector } from "../../store/use-selector"
-import { DialogInfo } from "../../types"
-import styles from "./Footer.module.scss"
+import { TreeNode } from "../../../shared/types";
+import AddBookmarkIcon from "../../assets/icons/new-bookmark.svg";
+import AddFolderIcon from "../../assets/icons/new-folder.svg";
+import SaveIcon from "../../assets/icons/save.svg";
+import SettingsIcon from "../../assets/icons/settings.svg";
+import useDefaultFolderId from "../../hooks/use-default-folder-id";
+import { useSelector } from "../../store/use-selector";
+import { DialogInfo } from "../../types";
+import styles from "./Footer.module.scss";
 
 /**
  * Footer component with buttons
  */
 
 interface Props {
-  currentFolder: TreeNode
-  setDialogInfo: (dialogInfo: DialogInfo) => void
+  currentFolder: TreeNode;
+  setDialogInfo: (dialogInfo: DialogInfo) => void;
 }
 
 const Footer = (props: Props): ReactElement => {
-  const { currentFolder, setDialogInfo } = props
+  const { currentFolder, setDialogInfo } = props;
 
-  const currentFolderId = useSelector((state) => state.currentFolderId)
-  const [defaultFolderId, setDefaultFolderId] = useDefaultFolderId()
+  const currentFolderId = useSelector((state) => state.currentFolderId);
+  const [defaultFolderId, setDefaultFolderId] = useDefaultFolderId();
 
-  const canCreateNode = currentFolder?.parentId != null
+  const canCreateNode = currentFolder?.parentId != null;
 
   const createBookmark = (): void => {
     setDialogInfo({
       dialogType: "create-bookmark",
       editedNode: undefined,
       currentFolderId,
-    })
-  }
+    });
+  };
 
   const createFolder = (): void => {
     setDialogInfo({
       dialogType: "create-folder",
       editedNode: undefined,
       currentFolderId,
-    })
-  }
+    });
+  };
 
   const updateDefaultFolder = (): void => {
-    setDefaultFolderId(currentFolderId)
-  }
+    setDefaultFolderId(currentFolderId);
+  };
 
   const openSettings = async (): Promise<void> => {
-    await Browser.runtime.openOptionsPage()
-  }
+    await Browser.runtime.openOptionsPage();
+  };
 
   return (
     <footer className={styles.footer}>
@@ -90,7 +90,7 @@ const Footer = (props: Props): ReactElement => {
         <SettingsIcon className={styles.footerButtonIcon} />
       </button>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
