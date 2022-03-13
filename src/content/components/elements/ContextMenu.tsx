@@ -33,6 +33,9 @@ const ContextMenu = (props: Props): ReactElement => {
   // Folders cannot be copied (don't have a URL)
   const canCopy = selectedNode?.type === "bookmark";
 
+  // Folder can not be opend in a new tab
+  const canOpenInNewTab = selectedNode?.type === "bookmark";
+
   // Node can be deleted if it's not in the root directory
   const canDelete = grandParentId != null;
 
@@ -48,6 +51,10 @@ const ContextMenu = (props: Props): ReactElement => {
     } else {
       console.error("Cannot copy to clipboard: Missing URL");
     }
+  };
+
+  const onOpenInNewTab = () => {
+    window.open(selectedNode?.url, "_blank");
   };
 
   const onDeleteClick = (): void => {
@@ -102,6 +109,13 @@ const ContextMenu = (props: Props): ReactElement => {
             disabled={!canCopy}
             label="Copy"
             onClick={onCopyClick}
+          />
+        </li>
+        <li>
+          <ContextMenuItem
+            disabled={!canOpenInNewTab}
+            label="Open in new tab"
+            onClick={onOpenInNewTab}
           />
         </li>
         <li>
