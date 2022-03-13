@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 
 import {
@@ -19,6 +20,7 @@ interface Props {
 const ContextMenu = (props: Props): ReactElement => {
   const { contextMenuInfo, setDialogInfo } = props;
   const { x, y, isOpen, selectedNode } = contextMenuInfo;
+  const { t } = useTranslation();
 
   const dispatch = useDispatch();
 
@@ -107,35 +109,35 @@ const ContextMenu = (props: Props): ReactElement => {
         <li>
           <ContextMenuItem
             disabled={!canCopy}
-            label="Copy"
+            label={t("actions.copy")}
             onClick={onCopyClick}
           />
         </li>
         <li>
           <ContextMenuItem
             disabled={!canOpenInNewTab}
-            label="Open in new tab"
+            label={t("actions.openInNewTab")}
             onClick={onOpenInNewTab}
           />
         </li>
         <li>
           <ContextMenuItem
             disabled={!canEdit}
-            label="Edit…"
+            label={t("actions.editItem")}
             onClick={onEditClick}
           />
         </li>
         <li>
           <ContextMenuItem
             disabled={!canMoveUp}
-            label="Move up"
+            label={t("actions.moveUp")}
             onClick={onMoveUpClick}
           />
         </li>
         <li>
           <ContextMenuItem
             disabled={!canDelete}
-            label="Delete"
+            label={t("actions.delete")}
             onClick={onDeleteClick}
           />
         </li>

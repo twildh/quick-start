@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import i18n from "i18next";
 
 import { getOptionsStorage } from "../../shared/options-storage";
 import useDefaultFolderId from "../hooks/use-default-folder-id";
@@ -39,8 +40,12 @@ const App = (): ReactElement => {
   }, []);
 
   // After loading component: Load setting whether clock should be displayed
+  // and update language
   useEffect(() => {
-    optionsStorage.getAll().then((options) => setShowClock(options.showClock));
+    optionsStorage.getAll().then((options) => {
+      setShowClock(options.showClock);
+      i18n.changeLanguage(options.lang);
+    });
   }, []);
 
   // When default directory changes, navigate there

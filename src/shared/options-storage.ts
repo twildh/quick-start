@@ -24,6 +24,7 @@ const getDefaultFolderId = (): string => {
 const defaults = {
   defaultFolderId: getDefaultFolderId(),
   showClock: false,
+  lang: "en",
 };
 
 /**
