@@ -1,28 +1,28 @@
 .bookmarkIcon,
 .folderIcon {
-  width: var(--icon-size);
-  height: var(--icon-size);
-  border-radius: 10px;
-  filter: drop-shadow(var(--box-shadow-large));
-  transition: filter var(--transition-duration);
+	width: var(--icon-size);
+	height: var(--icon-size);
+	border-radius: 10px;
+	filter: drop-shadow(var(--box-shadow-large));
+	transition: filter var(--transition-duration);
 
-  &:hover {
-    filter: drop-shadow(var(--box-shadow-large-hover));
-  }
+	&:hover {
+		filter: drop-shadow(var(--box-shadow-large-hover));
+	}
 }
 
 .bookmarkPlaceholderIcon,
 .folderIcon {
-  padding: 25%;
-  color: var(--color-text-button);
-  background: var(--color-background-button);
-  user-select: none;
+	padding: 25%;
+	color: var(--color-text-button);
+	background: var(--color-background-button);
+	user-select: none;
 }
 
 .disallowUserSelect {
-  pointer-events: none;
+	pointer-events: none;
 }
 
 .allowUserSelect {
-  pointer-events: initial;
+	pointer-events: initial;
 }

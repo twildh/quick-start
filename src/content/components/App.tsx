@@ -20,92 +20,85 @@ import Header from "./structure/Header";
 const optionsStorage = getOptionsStorage();
 
 const App = (): ReactElement => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  const bookmarks = useSelector((state) => state.bookmarks);
-  const currentFolderId = useSelector((state) => state.currentFolderId);
-  const [defaultFolderId, setDefaultFolderId] = useDefaultFolderId();
-  const [showClock, setShowClock] = useState<boolean>();
-  const [dialogInfo, setDialogInfo] = useState<DialogInfo>({
-    dialogType: "none",
-    editedNode: undefined,
-    currentFolderId: undefined,
-  });
+	const bookmarks = useSelector((state) => state.bookmarks);
+	const currentFolderId = useSelector((state) => state.currentFolderId);
+	const [defaultFolderId, setDefaultFolderId] = useDefaultFolderId();
+	const [showClock, setShowClock] = useState<boolean>();
+	const [dialogInfo, setDialogInfo] = useState<DialogInfo>({
+		dialogType: "none",
+		editedNode: undefined,
+		currentFolderId: undefined,
+	});
 
-  // After loading component: Update bookmark tree in state using browser API
-  useEffect(() => {
-    dispatch(refreshBookmarks());
-    // on mount hook, does not need to re-run
-    // eslint-disable-next-line
-  }, []);
+	// After loading component: Update bookmark tree in state using browser API
+	useEffect(() => {
+		dispatch(refreshBookmarks());
+		// on mount hook, does not need to re-run
+		// eslint-disable-next-line
+	}, []);
 
-  // After loading component: Load setting whether clock should be displayed
-  // and update language
-  useEffect(() => {
-    optionsStorage.getAll().then((options) => {
-      setShowClock(options.showClock);
-      i18n.changeLanguage(options.lang);
-      // the options are saved as strings on firefox not on chrome
-      // so we need to parse it
-      document.body.style.setProperty(
-        "--nr-columns",
-        (parseInt(options.nrOfColumns.toString(), 10) + 1).toString(),
-      );
-    });
-  }, []);
+	// After loading component: Load setting whether clock should be displayed
+	// and update language
+	useEffect(() => {
+		optionsStorage.getAll().then((options) => {
+			setShowClock(options.showClock);
+			i18n.changeLanguage(options.lang);
+			// the options are saved as strings on firefox not on chrome
+			// so we need to parse it
+			document.body.style.setProperty(
+				"--nr-columns",
+				(parseInt(options.nrOfColumns.toString(), 10) + 1).toString(),
+			);
+		});
+	}, []);
 
-  // When default directory changes, navigate there
-  useEffect(() => {
-    if (defaultFolderId) {
-      dispatch(setCurrentFolderId(defaultFolderId));
-    }
-    // only navigate on folder change
-    // eslint-disable-next-line
-  }, [defaultFolderId]);
+	// When default directory changes, navigate there
+	useEffect(() => {
+		if (defaultFolderId) {
+			dispatch(setCurrentFolderId(defaultFolderId));
+		}
+		// only navigate on folder change
+		// eslint-disable-next-line
+	}, [defaultFolderId]);
 
-  let appContent;
-  if (
-    defaultFolderId == null ||
-    currentFolderId == null ||
-    showClock == null ||
-    isEmptyObject(bookmarks)
-  ) {
-    // Options or bookmarks have not yet loaded: Show loading spinner
-    appContent = <Spinner />;
-  } else if (!(defaultFolderId in bookmarks)) {
-    // If default folder does not exist: Show loading spinner and reset it to the first tree node
-    console.error(
-      "Default folder does not exist: Resetting it to first bookmark node",
-    );
-    const newDefaultFolderId = bookmarks[0].id;
-    setDefaultFolderId(newDefaultFolderId);
-  } else if (!(currentFolderId in bookmarks)) {
-    // If current folder does not exist: Show loading spinner and navigate to default directory
-    console.error(
-      "Current folder does not exist: Resetting it to default folder",
-    );
-    dispatch(setCurrentFolderId(defaultFolderId));
-    appContent = <Spinner />;
-  } else {
-    // Render bookmark tree
-    const currentFolder = bookmarks[currentFolderId];
-    appContent = (
-      <>
-        {showClock && <Clock />}
-        <Header currentFolder={currentFolder} />
-        <FolderView
-          currentFolder={currentFolder}
-          setDialogInfo={setDialogInfo}
-        />
-        <Footer currentFolder={currentFolder} setDialogInfo={setDialogInfo} />
-        {dialogInfo.dialogType !== "none" && (
-          <NodeDialog dialogInfo={dialogInfo} setDialogInfo={setDialogInfo} />
-        )}
-      </>
-    );
-  }
+	let appContent;
+	if (
+		defaultFolderId == null ||
+		currentFolderId == null ||
+		showClock == null ||
+		isEmptyObject(bookmarks)
+	) {
+		// Options or bookmarks have not yet loaded: Show loading spinner
+		appContent = <Spinner />;
+	} else if (!(defaultFolderId in bookmarks)) {
+		// If default folder does not exist: Show loading spinner and reset it to the first tree node
+		console.error("Default folder does not exist: Resetting it to first bookmark node");
+		const newDefaultFolderId = bookmarks[0].id;
+		setDefaultFolderId(newDefaultFolderId);
+	} else if (!(currentFolderId in bookmarks)) {
+		// If current folder does not exist: Show loading spinner and navigate to default directory
+		console.error("Current folder does not exist: Resetting it to default folder");
+		dispatch(setCurrentFolderId(defaultFolderId));
+		appContent = <Spinner />;
+	} else {
+		// Render bookmark tree
+		const currentFolder = bookmarks[currentFolderId];
+		appContent = (
+			<>
+				{showClock && <Clock />}
+				<Header currentFolder={currentFolder} />
+				<FolderView currentFolder={currentFolder} setDialogInfo={setDialogInfo} />
+				<Footer currentFolder={currentFolder} setDialogInfo={setDialogInfo} />
+				{dialogInfo.dialogType !== "none" && (
+					<NodeDialog dialogInfo={dialogInfo} setDialogInfo={setDialogInfo} />
+				)}
+			</>
+		);
+	}
 
-  return <div className={styles.app}>{appContent}</div>;
+	return <div className={styles.app}>{appContent}</div>;
 };
 
 export default App;

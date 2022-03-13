@@ -1,19 +1,19 @@
 .modalOuterWrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background-color: rgb(0, 0, 0, 0.5); // Darken background
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(0, 0, 0, 0.5); // Darken background
 }
 
 .modalInnerWrapper {
-  background: var(--color-background);
-  border-radius: 10px;
-  outline: none;
-  box-shadow: var(--box-shadow-large);
+	background: var(--color-background);
+	border-radius: 10px;
+	outline: none;
+	box-shadow: var(--box-shadow-large);
 }

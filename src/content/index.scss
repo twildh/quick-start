@@ -5,70 +5,69 @@
 */
 
 body {
-  // Colors (both themes, because also used in JS)
-  --color-background-button: #969696;
-  --color-text-button: #ffffff;
+	// Colors (both themes, because also used in JS)
+	--color-background-button: #969696;
+	--color-text-button: #ffffff;
 
-  // Colors (light)
-  --color-background: #eae9e9;
-  --color-background-button-disabled: #cacaca;
-  --color-background-context-menu: #d3d3d3;
-  --color-background-context-menu-hover: #c6c6c6;
-  --color-background-input: #ffffff;
-  --color-text: #2e2e2e;
-  --color-text-faded: #919191;
+	// Colors (light)
+	--color-background: #eae9e9;
+	--color-background-button-disabled: #cacaca;
+	--color-background-context-menu: #d3d3d3;
+	--color-background-context-menu-hover: #c6c6c6;
+	--color-background-input: #ffffff;
+	--color-text: #2e2e2e;
+	--color-text-faded: #919191;
 
-  // Fonts
-  --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol";
-  --font-size-clock: 800%;
-  --font-size-label: 120%;
-  --font-size-header: 160%;
-  --font-weight-normal: 400;
-  --font-weight-bold: 600;
+	// Fonts
+	--font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica",
+		"Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	--font-size-clock: 800%;
+	--font-size-label: 120%;
+	--font-size-header: 160%;
+	--font-weight-normal: 400;
+	--font-weight-bold: 600;
 
-  // Sizes (all screen sizes)
-  --nr-columns: 6;
-  --grid-max-col-width: calc(var(--nr-columns) * var(--icon-size));
-  --grid-max-gap-width: calc(var(--nr-columns) - 1) * var(--spacing-medium);
-  --grid-max-width: calc(var(--grid-max-col-width) + var(--grid-max-gap-width));
+	// Sizes (all screen sizes)
+	--nr-columns: 6;
+	--grid-max-col-width: calc(var(--nr-columns) * var(--icon-size));
+	--grid-max-gap-width: calc(var(--nr-columns) - 1) * var(--spacing-medium);
+	--grid-max-width: calc(var(--grid-max-col-width) + var(--grid-max-gap-width));
 
-  // Other
-  --box-shadow-small: 1px 1px 2px rgba(0, 0, 0, 0.2);
-  --box-shadow-small-hover: 1px 1px 3px rgba(0, 0, 0, 0.3);
-  --box-shadow-large: 1px 1px 3px rgba(0, 0, 0, 0.3);
-  --box-shadow-large-hover: 1px 1px 4px rgba(0, 0, 0, 0.45);
-  --transition-duration: 0.2s;
+	// Other
+	--box-shadow-small: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	--box-shadow-small-hover: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	--box-shadow-large: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	--box-shadow-large-hover: 1px 1px 4px rgba(0, 0, 0, 0.45);
+	--transition-duration: 0.2s;
 
-  // Sizes
-  @include small-screens {
-    --button-size: 20px;
-    --font-size: 11px;
-    --icon-size: 60px;
-    --spacing-small: 8px;
-    --spacing-medium: 25px;
-    --spacing-large: 30px;
-  }
-  @include large-screens {
-    --button-size: 25px;
-    --font-size: 12px;
-    --icon-size: 80px;
-    --spacing-small: 10px;
-    --spacing-medium: 35px;
-    --spacing-large: 50px;
-  }
+	// Sizes
+	@include small-screens {
+		--button-size: 20px;
+		--font-size: 11px;
+		--icon-size: 60px;
+		--spacing-small: 8px;
+		--spacing-medium: 25px;
+		--spacing-large: 30px;
+	}
+	@include large-screens {
+		--button-size: 25px;
+		--font-size: 12px;
+		--icon-size: 80px;
+		--spacing-small: 10px;
+		--spacing-medium: 35px;
+		--spacing-large: 50px;
+	}
 
-  // Colors (dark)
-  @media screen and (prefers-color-scheme: dark) {
-    --color-background: #444344;
-    --color-background-button-disabled: #5f5f5f;
-    --color-background-context-menu: #393939;
-    --color-background-context-menu-hover: #464646;
-    --color-background-input: #686868;
-    --color-text: #ffffff;
-    --color-text-faded: #b9b9b9;
-  }
+	// Colors (dark)
+	@media screen and (prefers-color-scheme: dark) {
+		--color-background: #444344;
+		--color-background-button-disabled: #5f5f5f;
+		--color-background-context-menu: #393939;
+		--color-background-context-menu-hover: #464646;
+		--color-background-input: #686868;
+		--color-text: #ffffff;
+		--color-text-faded: #b9b9b9;
+	}
 }
 
 /**
@@ -80,64 +79,64 @@ body {
 html,
 body,
 body > div {
-  min-height: 100vh;
+	min-height: 100vh;
 }
 
 body {
-  color: var(--color-text);
-  font-weight: var(--font-weight-normal);
-  font-size: var(--font-size);
-  font-family: var(--font-family-system);
-  background: var(--color-background);
+	color: var(--color-text);
+	font-weight: var(--font-weight-normal);
+	font-size: var(--font-size);
+	font-family: var(--font-family-system);
+	background: var(--color-background);
 }
 
 // Reset button styles
 button,
 input {
-  padding: 0;
-  color: inherit;
-  font-size: inherit;
-  background: none;
-  border: 0;
+	padding: 0;
+	color: inherit;
+	font-size: inherit;
+	background: none;
+	border: 0;
 }
 
 ::placeholder {
-  color: var(--color-text-faded);
+	color: var(--color-text-faded);
 }
 
 input,
 .button-large {
-  padding: var(--spacing-small);
-  border-radius: 5px;
+	padding: var(--spacing-small);
+	border-radius: 5px;
 }
 
 input {
-  background: var(--color-background-input);
+	background: var(--color-background-input);
 }
 
 .button-large {
-  color: var(--color-text-button);
-  background: var(--color-background-button);
-  box-shadow: var(--box-shadow-small);
+	color: var(--color-text-button);
+	background: var(--color-background-button);
+	box-shadow: var(--box-shadow-small);
 
-  &:hover {
-    box-shadow: var(--box-shadow-small-hover);
-  }
+	&:hover {
+		box-shadow: var(--box-shadow-small-hover);
+	}
 
-  &:disabled {
-    color: var(--color-text-faded);
-    background: var(--color-background-button-disabled);
-    box-shadow: none;
-  }
+	&:disabled {
+		color: var(--color-text-faded);
+		background: var(--color-background-button-disabled);
+		box-shadow: none;
+	}
 }
 
 h1 {
-  font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-header);
+	font-weight: var(--font-weight-bold);
+	font-size: var(--font-size-header);
 }
 
 // Reset link styles
 a {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }

@@ -13,16 +13,16 @@ import en from "./locale/en.json";
 import de from "./locale/de.json";
 
 i18n.use(initReactI18next).init({
-  resources: {
-    en: { common: en },
-    de: { common: de },
-  },
-  lng: "en",
-  defaultNS: "common",
-  fallbackLng: "en",
-  interpolation: {
-    escapeValue: false,
-  },
+	resources: {
+		en: { common: en },
+		de: { common: de },
+	},
+	lng: "en",
+	defaultNS: "common",
+	fallbackLng: "en",
+	interpolation: {
+		escapeValue: false,
+	},
 });
 
 // Create "root" div
@@ -32,8 +32,8 @@ document.body.appendChild(root);
 
 // Render React app in root
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  root,
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	root,
 );

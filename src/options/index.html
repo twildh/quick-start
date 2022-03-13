@@ -1,42 +1,39 @@
 <!DOCTYPE html>
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <title>QuickStart Options</title>
+		<title>QuickStart Options</title>
 
-    <link rel="stylesheet" href="chrome://global/skin/in-content/common.css" />
-    <link rel="stylesheet" href="webext-base.css" />
-    <link rel="stylesheet" href="options.css" />
-  </head>
+		<link rel="stylesheet" href="chrome://global/skin/in-content/common.css" />
+		<link rel="stylesheet" href="webext-base.css" />
+		<link rel="stylesheet" href="options.css" />
+	</head>
 
-  <body>
-    <form>
-      <label>
-        Show clock:
-        <input type="checkbox" name="showClock" />
-      </label>
-      <br />
-      <div style="margin-top: 1em">
-        <label for="lang">Language:</label>
-        <select name="lang" id="lang">
-          <option value="en">English</option>
-          <option value="de">Deutsch</option>
-        </select>
-      </div>
-      <div style="margin-top: 1em">
-        <label>
-          Nr of columns:
-          <input type="number" min="1" name="nrOfColumns" />
-        </label>
-      </div>
-    </form>
+	<body>
+		<form>
+			<label>
+				Show clock:
+				<input type="checkbox" name="showClock" />
+			</label>
+			<br />
+			<div style="margin-top: 1em">
+				<label for="lang">Language:</label>
+				<select name="lang" id="lang">
+					<option value="en">English</option>
+					<option value="de">Deutsch</option>
+				</select>
+			</div>
+			<div style="margin-top: 1em">
+				<label>
+					Nr of columns:
+					<input type="number" min="1" name="nrOfColumns" />
+				</label>
+			</div>
+		</form>
 
-    <script src="./options.js"></script>
-  </body>
+		<script src="./options.js"></script>
+	</body>
 </html>

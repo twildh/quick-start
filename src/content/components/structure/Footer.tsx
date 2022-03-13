@@ -17,82 +17,82 @@ import styles from "./Footer.module.scss";
  */
 
 interface Props {
-  currentFolder: TreeNode;
-  setDialogInfo: (dialogInfo: DialogInfo) => void;
+	currentFolder: TreeNode;
+	setDialogInfo: (dialogInfo: DialogInfo) => void;
 }
 
 const Footer = (props: Props): ReactElement => {
-  const { currentFolder, setDialogInfo } = props;
-  const { t } = useTranslation();
+	const { currentFolder, setDialogInfo } = props;
+	const { t } = useTranslation();
 
-  const currentFolderId = useSelector((state) => state.currentFolderId);
-  const [defaultFolderId, setDefaultFolderId] = useDefaultFolderId();
+	const currentFolderId = useSelector((state) => state.currentFolderId);
+	const [defaultFolderId, setDefaultFolderId] = useDefaultFolderId();
 
-  const canCreateNode = currentFolder?.parentId != null;
+	const canCreateNode = currentFolder?.parentId != null;
 
-  const createBookmark = (): void => {
-    setDialogInfo({
-      dialogType: "create-bookmark",
-      editedNode: undefined,
-      currentFolderId,
-    });
-  };
+	const createBookmark = (): void => {
+		setDialogInfo({
+			dialogType: "create-bookmark",
+			editedNode: undefined,
+			currentFolderId,
+		});
+	};
 
-  const createFolder = (): void => {
-    setDialogInfo({
-      dialogType: "create-folder",
-      editedNode: undefined,
-      currentFolderId,
-    });
-  };
+	const createFolder = (): void => {
+		setDialogInfo({
+			dialogType: "create-folder",
+			editedNode: undefined,
+			currentFolderId,
+		});
+	};
 
-  const updateDefaultFolder = (): void => {
-    setDefaultFolderId(currentFolderId);
-  };
+	const updateDefaultFolder = (): void => {
+		setDefaultFolderId(currentFolderId);
+	};
 
-  const openSettings = async (): Promise<void> => {
-    await Browser.runtime.openOptionsPage();
-  };
+	const openSettings = async (): Promise<void> => {
+		await Browser.runtime.openOptionsPage();
+	};
 
-  return (
-    <footer className={styles.footer}>
-      <button
-        type="button"
-        className={styles.footerButton}
-        disabled={!canCreateNode}
-        title={t("actions.createBookmark")}
-        onClick={createBookmark}
-      >
-        <AddBookmarkIcon className={styles.footerButtonIcon} />
-      </button>
-      <button
-        type="button"
-        className={styles.footerButton}
-        disabled={!canCreateNode}
-        title={t("actions.createFolder")}
-        onClick={createFolder}
-      >
-        <AddFolderIcon className={styles.footerButtonIcon} />
-      </button>
-      <button
-        type="button"
-        className={styles.footerButton}
-        disabled={currentFolderId === defaultFolderId}
-        title={t("actions.setDefaultDirectory")}
-        onClick={updateDefaultFolder}
-      >
-        <SaveIcon className={styles.footerButtonIcon} />
-      </button>
-      <button
-        type="button"
-        className={styles.footerButton}
-        title={t("actions.settings")}
-        onClick={openSettings}
-      >
-        <SettingsIcon className={styles.footerButtonIcon} />
-      </button>
-    </footer>
-  );
+	return (
+		<footer className={styles.footer}>
+			<button
+				type="button"
+				className={styles.footerButton}
+				disabled={!canCreateNode}
+				title={t("actions.createBookmark")}
+				onClick={createBookmark}
+			>
+				<AddBookmarkIcon className={styles.footerButtonIcon} />
+			</button>
+			<button
+				type="button"
+				className={styles.footerButton}
+				disabled={!canCreateNode}
+				title={t("actions.createFolder")}
+				onClick={createFolder}
+			>
+				<AddFolderIcon className={styles.footerButtonIcon} />
+			</button>
+			<button
+				type="button"
+				className={styles.footerButton}
+				disabled={currentFolderId === defaultFolderId}
+				title={t("actions.setDefaultDirectory")}
+				onClick={updateDefaultFolder}
+			>
+				<SaveIcon className={styles.footerButtonIcon} />
+			</button>
+			<button
+				type="button"
+				className={styles.footerButton}
+				title={t("actions.settings")}
+				onClick={openSettings}
+			>
+				<SettingsIcon className={styles.footerButtonIcon} />
+			</button>
+		</footer>
+	);
 };
 
 export default Footer;

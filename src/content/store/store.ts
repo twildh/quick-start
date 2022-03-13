@@ -8,7 +8,7 @@ import { ActionT, State } from "./types";
 // Set up middleware
 let middleware = [thunk as ThunkMiddleware<State, ActionT>];
 if (process.env.NODE_ENV !== "production") {
-  middleware = [...middleware, createLogger()];
+	middleware = [...middleware, createLogger()];
 }
 
 // Create store

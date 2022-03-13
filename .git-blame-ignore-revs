@@ -6,3 +6,6 @@ b36700d46914de9541c4c0e5e77fcb888f2c1130
 
 # reformat project after dependency/config update
 6afd7e2cf6d64939f6ab930542298dea0f9ab72f
+
+# change back some old style changes
+addd32386e0a287a378531b114a05827d49178b6

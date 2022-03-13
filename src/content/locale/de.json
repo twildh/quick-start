@@ -1,22 +1,22 @@
 {
-  "actions": {
-    "copy": "Kopieren",
-    "openInNewTab": "Neuer Tab",
-    "openInIncognito": "Neu in Privat",
-    "editItem": "Bearbeiten...",
-    "moveUp": "Hoch",
-    "delete": "Löschen",
-    "createBookmark": "Lesezeichen einfügen",
-    "createFolder": "Ordner erstellen",
-    "setDefaultDirectory": "Als Standardordner setzten",
-    "settings": "Einstellungen",
-    "create": "Hinzufügen",
-    "edit": "Bearbeiten",
-    "save": "Speichern"
-  },
-  "types": { "folder": "Ordner", "bookmark": "Lesezeichen" },
-  "fields": { "title": "Name", "url": "URL" },
-  "errors": {
-    "incognitoDisabled": "Erlaube der Erweiterung Zugriff auf den Incognito-Modus um Links in einem privaten Fester zu öffnen."
-  }
+	"actions": {
+		"copy": "Kopieren",
+		"openInNewTab": "Neuer Tab",
+		"openInIncognito": "Neu in Privat",
+		"editItem": "Bearbeiten...",
+		"moveUp": "Hoch",
+		"delete": "Löschen",
+		"createBookmark": "Lesezeichen einfügen",
+		"createFolder": "Ordner erstellen",
+		"setDefaultDirectory": "Als Standardordner setzten",
+		"settings": "Einstellungen",
+		"create": "Hinzufügen",
+		"edit": "Bearbeiten",
+		"save": "Speichern"
+	},
+	"types": { "folder": "Ordner", "bookmark": "Lesezeichen" },
+	"fields": { "title": "Name", "url": "URL" },
+	"errors": {
+		"incognitoDisabled": "Erlaube der Erweiterung Zugriff auf den Incognito-Modus um Links in einem privaten Fester zu öffnen."
+	}
 }

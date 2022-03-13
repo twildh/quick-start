@@ -1,22 +1,22 @@
 {
-  "actions": {
-    "copy": "Copy",
-    "openInNewTab": "New tab",
-    "openInIncognito": "New private",
-    "editItem": "Edit...",
-    "moveUp": "Move up",
-    "delete": "Delete",
-    "createBookmark": "Create bookmark",
-    "createFolder": "Create folder",
-    "setDefaultDirectory": "Set as default directory",
-    "settings": "Settings",
-    "create": "Create",
-    "edit": "Edit",
-    "save": "Save"
-  },
-  "types": { "folder": "Folder", "bookmark": "Bookmark" },
-  "fields": { "title": "Title", "url": "URL" },
-  "errors": {
-    "incognitoDisabled": "Enable incognito mode for this extension if you want to open a tab in private mode."
-  }
+	"actions": {
+		"copy": "Copy",
+		"openInNewTab": "New tab",
+		"openInIncognito": "New private",
+		"editItem": "Edit...",
+		"moveUp": "Move up",
+		"delete": "Delete",
+		"createBookmark": "Create bookmark",
+		"createFolder": "Create folder",
+		"setDefaultDirectory": "Set as default directory",
+		"settings": "Settings",
+		"create": "Create",
+		"edit": "Edit",
+		"save": "Save"
+	},
+	"types": { "folder": "Folder", "bookmark": "Bookmark" },
+	"fields": { "title": "Title", "url": "URL" },
+	"errors": {
+		"incognitoDisabled": "Enable incognito mode for this extension if you want to open a tab in private mode."
+	}
 }

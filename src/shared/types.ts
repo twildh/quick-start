@@ -5,13 +5,13 @@ import { Bookmarks } from "webextension-polyfill";
 export type NodeId = string;
 
 export interface TreeNode {
-  id: string;
-  parentId: NodeId | undefined;
-  childrenIds: NodeId[];
-  index: number | undefined;
-  type: Bookmarks.BookmarkTreeNodeType | undefined;
-  title: string;
-  url: string | undefined;
+	id: string;
+	parentId: NodeId | undefined;
+	childrenIds: NodeId[];
+	index: number | undefined;
+	type: Bookmarks.BookmarkTreeNodeType | undefined;
+	title: string;
+	url: string | undefined;
 }
 
 export type FlatTree = Record<NodeId, TreeNode>;

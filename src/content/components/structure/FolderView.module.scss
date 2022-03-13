@@ -1,21 +1,21 @@
 .folderEmptyLabel {
-  color: var(--color-background-button);
-  font-size: var(--font-size-label);
-  text-align: center;
+	color: var(--color-background-button);
+	font-size: var(--font-size-label);
+	text-align: center;
 }
 
 .folderView {
-  flex: 1; // Fill remaining vertical space
-  width: 100%;
-  max-width: var(--grid-max-width);
-  height: 100%;
-  margin: 0 auto;
-  padding: 0 var(--spacing-medium);
+	flex: 1; // Fill remaining vertical space
+	width: 100%;
+	max-width: var(--grid-max-width);
+	height: 100%;
+	margin: 0 auto;
+	padding: 0 var(--spacing-medium);
 }
 
 .treeContainer {
-  display: grid;
-  grid-gap: var(--spacing-medium);
-  grid-template-columns: repeat(auto-fit, var(--icon-size));
-  justify-content: center;
+	display: grid;
+	grid-gap: var(--spacing-medium);
+	grid-template-columns: repeat(auto-fit, var(--icon-size));
+	justify-content: center;
 }

@@ -3,13 +3,13 @@
 $break-point: 600px;
 
 @mixin small-screens {
-  @media screen and (max-width: $break-point) {
-    @content;
-  }
+	@media screen and (max-width: $break-point) {
+		@content;
+	}
 }
 
 @mixin large-screens {
-  @media screen and (min-width: $break-point) {
-    @content;
-  }
+	@media screen and (min-width: $break-point) {
+		@content;
+	}
 }

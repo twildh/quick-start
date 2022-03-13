@@ -1,34 +1,34 @@
 {
-  "manifest_version": 2,
-  "name": "QuickStart",
-  "version": "1.1.2",
-  "description": "Bookmark-based browser start page",
-  "author": "Timothée Wildhaber and Samuel Meuli",
-  "homepage_url": "https://github.com/twildh/quick-start",
-  "permissions": ["bookmarks", "storage"],
-  "icons": {
-    "48": "icons/icon-48.png",
-    "128": "icons/icon-128.png",
-    "512": "icons/icon-512.png",
-    "1024": "icons/icon-1024.png"
-  },
-  "background": {
-    "scripts": ["./background.js"]
-  },
-  "chrome_url_overrides": {
-    "newtab": "./index.html"
-  },
-  "chrome_settings_overrides": {
-    "homepage": "index.html"
-  },
-  "options_ui": {
-    "page": "./options.html",
-    "browser_style": true,
-    "chrome_style": true
-  },
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "{bdbbd63e-dca7-48fd-ab02-9ca4fad8f778}"
-    }
-  }
+	"manifest_version": 2,
+	"name": "QuickStart",
+	"version": "1.1.2",
+	"description": "Bookmark-based browser start page",
+	"author": "Timothée Wildhaber and Samuel Meuli",
+	"homepage_url": "https://github.com/twildh/quick-start",
+	"permissions": ["bookmarks", "storage"],
+	"icons": {
+		"48": "icons/icon-48.png",
+		"128": "icons/icon-128.png",
+		"512": "icons/icon-512.png",
+		"1024": "icons/icon-1024.png"
+	},
+	"background": {
+		"scripts": ["./background.js"]
+	},
+	"chrome_url_overrides": {
+		"newtab": "./index.html"
+	},
+	"chrome_settings_overrides": {
+		"homepage": "index.html"
+	},
+	"options_ui": {
+		"page": "./options.html",
+		"browser_style": true,
+		"chrome_style": true
+	},
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "{bdbbd63e-dca7-48fd-ab02-9ca4fad8f778}"
+		}
+	}
 }
