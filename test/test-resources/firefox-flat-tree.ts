@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 import { FlatTree } from "../../src/shared/types";
 
 const firefoxFlatTree: FlatTree = {
@@ -59,8 +57,7 @@ const firefoxFlatTree: FlatTree = {
 		index: 1,
 		type: "bookmark",
 		title: "Customize Firefox",
-		url:
-			"https://support.mozilla.org/en-US/kb/customize-firefox-controls-buttons-and-toolbars?utm_source=firefox-browser&utm_medium=default-bookmarks&utm_campaign=customize",
+		url: "https://support.mozilla.org/en-US/kb/customize-firefox-controls-buttons-and-toolbars?utm_source=firefox-browser&utm_medium=default-bookmarks&utm_campaign=customize",
 	},
 	"7sVghlk_d3BF": {
 		id: "7sVghlk_d3BF",

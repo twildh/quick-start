@@ -1,4 +1,4 @@
-import { Bookmarks } from "webextension-polyfill-ts";
+import { Bookmarks } from "webextension-polyfill";
 
 const firefoxTree: Bookmarks.BookmarkTreeNode[] = [
 	{
@@ -42,8 +42,7 @@ const firefoxTree: Bookmarks.BookmarkTreeNode[] = [
 								index: 1,
 								dateAdded: 1579020322410,
 								type: "bookmark",
-								url:
-									"https://support.mozilla.org/en-US/kb/customize-firefox-controls-buttons-and-toolbars?utm_source=firefox-browser&utm_medium=default-bookmarks&utm_campaign=customize",
+								url: "https://support.mozilla.org/en-US/kb/customize-firefox-controls-buttons-and-toolbars?utm_source=firefox-browser&utm_medium=default-bookmarks&utm_campaign=customize",
 								parentId: "u8V2UsBINeWn",
 							},
 							{

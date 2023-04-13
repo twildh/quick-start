@@ -1,5 +1,7 @@
 import React, { ReactElement } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import Browser from "webextension-polyfill";
 
 import { deleteBookmark, deleteFolder, moveNodeToFolder } from "../../store/thunks";
 import { useSelector } from "../../store/use-selector";
@@ -15,6 +17,7 @@ interface Props {
 const ContextMenu = (props: Props): ReactElement => {
 	const { contextMenuInfo, setDialogInfo } = props;
 	const { x, y, isOpen, selectedNode } = contextMenuInfo;
+	const { t } = useTranslation();
 
 	const dispatch = useDispatch();
 
@@ -26,6 +29,9 @@ const ContextMenu = (props: Props): ReactElement => {
 
 	// Folders cannot be copied (don't have a URL)
 	const canCopy = selectedNode?.type === "bookmark";
+
+	// Folder can not be opend in a new tab / incognito window
+	const canOpenInNew = selectedNode?.type === "bookmark";
 
 	// Node can be deleted if it's not in the root directory
 	const canDelete = grandParentId != null;
@@ -41,6 +47,18 @@ const ContextMenu = (props: Props): ReactElement => {
 			await navigator.clipboard.writeText(selectedNode.url);
 		} else {
 			console.error("Cannot copy to clipboard: Missing URL");
+		}
+	};
+
+	const onOpenInNewTab = () => {
+		window.open(selectedNode?.url, "_blank");
+	};
+
+	const onOpenInIncognito = async () => {
+		try {
+			await Browser.windows.create({ url: selectedNode?.url, incognito: true });
+		} catch {
+			alert(t("errors.incognitoDisabled"));
 		}
 	};
 
@@ -89,16 +107,42 @@ const ContextMenu = (props: Props): ReactElement => {
 		>
 			<ul>
 				<li>
-					<ContextMenuItem disabled={!canCopy} label="Copy" onClick={onCopyClick} />
+					<ContextMenuItem disabled={!canCopy} label={t("actions.copy")} onClick={onCopyClick} />
 				</li>
 				<li>
-					<ContextMenuItem disabled={!canEdit} label="Edit…" onClick={onEditClick} />
+					<ContextMenuItem
+						disabled={!canOpenInNew}
+						label={t("actions.openInNewTab")}
+						onClick={onOpenInNewTab}
+					/>
 				</li>
 				<li>
-					<ContextMenuItem disabled={!canMoveUp} label="Move up" onClick={onMoveUpClick} />
+					<ContextMenuItem
+						disabled={!canOpenInNew}
+						label={t("actions.openInIncognito")}
+						onClick={onOpenInIncognito}
+					/>
 				</li>
 				<li>
-					<ContextMenuItem disabled={!canDelete} label="Delete" onClick={onDeleteClick} />
+					<ContextMenuItem
+						disabled={!canEdit}
+						label={t("actions.editItem")}
+						onClick={onEditClick}
+					/>
+				</li>
+				<li>
+					<ContextMenuItem
+						disabled={!canMoveUp}
+						label={t("actions.moveUp")}
+						onClick={onMoveUpClick}
+					/>
+				</li>
+				<li>
+					<ContextMenuItem
+						disabled={!canDelete}
+						label={t("actions.delete")}
+						onClick={onDeleteClick}
+					/>
 				</li>
 			</ul>
 		</div>

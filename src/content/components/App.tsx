@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import i18n from "i18next";
 
 import { getOptionsStorage } from "../../shared/options-storage";
 import useDefaultFolderId from "../hooks/use-default-folder-id";
@@ -34,11 +35,23 @@ const App = (): ReactElement => {
 	// After loading component: Update bookmark tree in state using browser API
 	useEffect(() => {
 		dispatch(refreshBookmarks());
+		// on mount hook, does not need to re-run
+		// eslint-disable-next-line
 	}, []);
 
 	// After loading component: Load setting whether clock should be displayed
+	// and update language
 	useEffect(() => {
-		optionsStorage.getAll().then((options) => setShowClock(options.showClock));
+		optionsStorage.getAll().then((options) => {
+			setShowClock(options.showClock);
+			i18n.changeLanguage(options.lang);
+			// the options are saved as strings on firefox not on chrome
+			// so we need to parse it
+			document.body.style.setProperty(
+				"--nr-columns",
+				(parseInt(options.nrOfColumns.toString(), 10) + 1).toString(),
+			);
+		});
 	}, []);
 
 	// When default directory changes, navigate there
@@ -46,6 +59,8 @@ const App = (): ReactElement => {
 		if (defaultFolderId) {
 			dispatch(setCurrentFolderId(defaultFolderId));
 		}
+		// only navigate on folder change
+		// eslint-disable-next-line
 	}, [defaultFolderId]);
 
 	let appContent;

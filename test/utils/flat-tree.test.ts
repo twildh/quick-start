@@ -1,4 +1,4 @@
-import { Bookmarks } from "webextension-polyfill-ts";
+import { Bookmarks } from "webextension-polyfill";
 
 import { flattenTree } from "../../src/content/utils/flat-tree";
 import chromeFlatTree from "../test-resources/chrome-flat-tree";

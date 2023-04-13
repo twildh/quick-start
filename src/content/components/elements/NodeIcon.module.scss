@@ -16,4 +16,13 @@
 	padding: 25%;
 	color: var(--color-text-button);
 	background: var(--color-background-button);
+	user-select: none;
+}
+
+.disallowUserSelect {
+	pointer-events: none;
+}
+
+.allowUserSelect {
+	pointer-events: initial;
 }

@@ -6,6 +6,8 @@ import {
 	SetBookmarksAction,
 	SetCurrentFolderIdAction,
 	SetDraggedNodeIdAction,
+	SET_FOLDER_HOVER_TIMER,
+	SetFolderHoverTimerAction,
 } from "./types";
 
 export function setBookmarks(bookmarks: FlatTree): SetBookmarksAction {
@@ -31,6 +33,18 @@ export function setDraggedNodeId(draggedNodeId: NodeId | undefined): SetDraggedN
 		type: SET_DRAGGED_NODE_ID,
 		payload: {
 			draggedNodeId,
+		},
+	};
+}
+
+export function setFolderHoverTimer(timeout?: {
+	id: NodeId;
+	timer: number;
+}): SetFolderHoverTimerAction {
+	return {
+		type: SET_FOLDER_HOVER_TIMER,
+		payload: {
+			timeout,
 		},
 	};
 }

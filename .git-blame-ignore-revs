@@ -1,0 +1,11 @@
+# use this file to ignore these revs with the following command:
+# git config --global blame.ignoreRevsFile .git-blame-ignore-revs
+
+# reenable semi colons in prettier
+b36700d46914de9541c4c0e5e77fcb888f2c1130
+
+# reformat project after dependency/config update
+6afd7e2cf6d64939f6ab930542298dea0f9ab72f
+
+# change back some old style changes
+debd16d6225d7e7bf5fe312308cfe3bd771aa5fc

@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
-import { browser } from "webextension-polyfill-ts";
+import { useTranslation } from "react-i18next";
+import Browser from "webextension-polyfill";
 
 import { TreeNode } from "../../../shared/types";
 import AddBookmarkIcon from "../../assets/icons/new-bookmark.svg";
@@ -22,6 +23,7 @@ interface Props {
 
 const Footer = (props: Props): ReactElement => {
 	const { currentFolder, setDialogInfo } = props;
+	const { t } = useTranslation();
 
 	const currentFolderId = useSelector((state) => state.currentFolderId);
 	const [defaultFolderId, setDefaultFolderId] = useDefaultFolderId();
@@ -49,7 +51,7 @@ const Footer = (props: Props): ReactElement => {
 	};
 
 	const openSettings = async (): Promise<void> => {
-		await browser.runtime.openOptionsPage();
+		await Browser.runtime.openOptionsPage();
 	};
 
 	return (
@@ -58,7 +60,7 @@ const Footer = (props: Props): ReactElement => {
 				type="button"
 				className={styles.footerButton}
 				disabled={!canCreateNode}
-				title="Create bookmark"
+				title={t("actions.createBookmark")}
 				onClick={createBookmark}
 			>
 				<AddBookmarkIcon className={styles.footerButtonIcon} />
@@ -67,7 +69,7 @@ const Footer = (props: Props): ReactElement => {
 				type="button"
 				className={styles.footerButton}
 				disabled={!canCreateNode}
-				title="Create folder"
+				title={t("actions.createFolder")}
 				onClick={createFolder}
 			>
 				<AddFolderIcon className={styles.footerButtonIcon} />
@@ -76,12 +78,17 @@ const Footer = (props: Props): ReactElement => {
 				type="button"
 				className={styles.footerButton}
 				disabled={currentFolderId === defaultFolderId}
-				title="Set as default directory"
+				title={t("actions.setDefaultDirectory")}
 				onClick={updateDefaultFolder}
 			>
 				<SaveIcon className={styles.footerButtonIcon} />
 			</button>
-			<button type="button" className={styles.footerButton} title="Settings" onClick={openSettings}>
+			<button
+				type="button"
+				className={styles.footerButton}
+				title={t("actions.settings")}
+				onClick={openSettings}
+			>
 				<SettingsIcon className={styles.footerButtonIcon} />
 			</button>
 		</footer>

@@ -2,8 +2,12 @@ import React, { DragEvent, MouseEvent, ReactElement } from "react";
 import { useDispatch } from "react-redux";
 
 import { TreeNode } from "../../../shared/types";
-import { setCurrentFolderId, setDraggedNodeId } from "../../store/action-creators";
-import { moveNodeInFolder } from "../../store/thunks";
+import {
+	setCurrentFolderId,
+	setDraggedNodeId,
+	setFolderHoverTimer,
+} from "../../store/action-creators";
+import { moveNodeInFolder, moveNodeToFolder } from "../../store/thunks";
 import { useSelector } from "../../store/use-selector";
 import styles from "./Node.module.scss";
 import NodeIcon from "./NodeIcon";
@@ -21,7 +25,17 @@ const Node = (props: Props): ReactElement => {
 
 	const dispatch = useDispatch();
 
-	const draggedNodeId = useSelector((state) => state.draggedNodeId);
+	const { draggedNodeId, timeout } = useSelector((state) => ({
+		draggedNodeId: state.draggedNodeId,
+		timeout: state.folderHoverTimeout,
+	}));
+
+	const cancelTimeout = () => {
+		if (timeout) {
+			clearTimeout(timeout?.timer);
+			dispatch(setFolderHoverTimer(undefined));
+		}
+	};
 
 	const onDragStart = (): void => {
 		// Function is executed on the node that is being dragged
@@ -42,20 +56,40 @@ const Node = (props: Props): ReactElement => {
 	const onDragEnter = (event: DragEvent<HTMLAnchorElement | HTMLButtonElement>): void => {
 		// Function is executed on the node that serves as the drop zone
 		event.preventDefault();
+		cancelTimeout();
 
-		// TODO: Allow nodes to be dropped into folders
+		if (node.type === "folder" && draggedNodeId !== node.id) {
+			const timer = window.setTimeout(() => {
+				dispatch(setFolderHoverTimer(undefined));
+				if (draggedNodeId) {
+					moveDndElement(draggedNodeId, index);
+				}
+			}, 1200);
+			dispatch(setFolderHoverTimer({ id: node.id, timer: timer }));
+			return;
+		}
+
 		if (draggedNodeId) {
 			moveDndElement(draggedNodeId, index);
 		}
+	};
+
+	const onDragLeave = (event: DragEvent<HTMLAnchorElement | HTMLButtonElement>): void => {
+		event.preventDefault();
+		cancelTimeout();
 	};
 
 	const onDrop = (event: DragEvent<HTMLAnchorElement | HTMLButtonElement>): void => {
 		// Function is executed on the node that serves as the drop zone
 		event.preventDefault();
 
-		// TODO: Allow nodes to be dropped into folders
 		if (draggedNodeId) {
-			dispatch(moveNodeInFolder(draggedNodeId, index));
+			if (timeout?.id == node.id) {
+				dispatch(moveNodeToFolder(draggedNodeId, node.id));
+				cancelTimeout();
+			} else {
+				dispatch(moveNodeInFolder(draggedNodeId, index));
+			}
 			dispatch(setDraggedNodeId(undefined));
 		}
 	};
@@ -78,6 +112,7 @@ const Node = (props: Props): ReactElement => {
 		onDragEnter,
 		onDragOver,
 		onDragEnd,
+		onDragLeave,
 		onDrop,
 	};
 
@@ -85,7 +120,11 @@ const Node = (props: Props): ReactElement => {
 	if (node.type === "folder") {
 		return (
 			<button type="button" onClick={onFolderClick} className={styles.node} {...elementProps}>
-				<NodeIcon node={node} />
+				<NodeIcon
+					node={node}
+					hoveredOn={node.id === timeout?.id}
+					hoverActive={Boolean(draggedNodeId)}
+				/>
 				<NodeTitle node={node} />
 			</button>
 		);

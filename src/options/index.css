@@ -5,5 +5,5 @@ form {
 
 /* Spacing between label and input */
 input {
-	margin-left: 5px !important; /* stylelint-disable-line declaration-no-important */
+	margin-left: 5px !important;
 }

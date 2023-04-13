@@ -1,4 +1,4 @@
-import { Bookmarks, browser } from "webextension-polyfill-ts";
+import Browser, { Bookmarks } from "webextension-polyfill";
 
 interface TestBookmark {
 	title: string;
@@ -25,7 +25,10 @@ const testBookmarks: TestBookmark[] = [
 	{ title: "Hacker News", url: "https://news.ycombinator.com/" },
 
 	// Subpath
-	{ title: "Reddit: Programming", url: "https://www.reddit.com/r/programming" },
+	{
+		title: "Reddit: Programming",
+		url: "https://www.reddit.com/r/programming",
+	},
 
 	// Non-existent site
 	{ title: "Doesn't exist", url: `https://${randomInt}.com` },
@@ -50,7 +53,7 @@ function getTestRootId(bookmarks: Bookmarks.BookmarkTreeNode[]): string {
  */
 function fillFolderWithTestBookmarks(parentId: string): void {
 	testBookmarks.forEach(async ({ title, url }) => {
-		await browser.bookmarks.create({ parentId, title, url });
+		await Browser.bookmarks.create({ parentId, title, url });
 	});
 }
 
@@ -58,14 +61,14 @@ function fillFolderWithTestBookmarks(parentId: string): void {
  * Creates sample bookmarks for testing
  */
 export async function createTestBookmarks(): Promise<void> {
-	const bookmarks = await browser.bookmarks.getTree();
+	const bookmarks = await Browser.bookmarks.getTree();
 	const rootId = getTestRootId(bookmarks);
 
 	// Create bookmarks in first default folder
 	fillFolderWithTestBookmarks(rootId);
 
 	// Create nested folder and add more bookmarks in there
-	const { id: folderId } = await browser.bookmarks.create({
+	const { id: folderId } = await Browser.bookmarks.create({
 		parentId: rootId,
 		title: "Some folder",
 	});

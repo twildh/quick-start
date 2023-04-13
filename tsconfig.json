@@ -1,3 +1,31 @@
 {
-	"extends": "@samuelmeuli/tsconfig"
+	"compilerOptions": {
+		"target": "ES3",
+		"module": "CommonJS",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"noEmit": true,
+		"jsx": "react",
+		"noImplicitAny": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"strictBindCallApply": true,
+		"strictFunctionTypes": true,
+		"strictNullChecks": true,
+		"newLine": "lf",
+		"removeComments": true,
+		"sourceMap": true,
+		"pretty": true
+	},
+	"include": ["src"],
+	"exclude": ["node_modules"]
 }
